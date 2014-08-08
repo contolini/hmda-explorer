@@ -176,7 +176,7 @@ var PDP = (function ( pdp ) {
         filters = '';
         break;
       default:
-        filters = ' with the above selected filters';
+        filters = ' with the selected filters';
     }
 
     if ( years.length > 1 ) {

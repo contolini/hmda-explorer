@@ -38,7 +38,10 @@ var PDP = (function ( pdp ) {
 
     pdp.form.resetFields();
     pdp.form.setFields();
-    pdp.form.showSections();
+    //pdp.form.showSections();
+    pdp.form.showField('#top-count');
+    pdp.form.showField('#find-answers');
+    pdp.form.showField('#summary');
     pdp.form.updateShareLink();
 
   }, 100));
@@ -65,6 +68,36 @@ var PDP = (function ( pdp ) {
     }
 
   }, 300 ));
+
+  // When "Raw Data" is clicked, show download module
+  $('#view-raw-data-button').on( 'click', function( ev ){
+    ev.preventDefault();
+    pdp.form.showField('.download-share');
+    pdp.form.hideField('#summary');
+    pdp.form.hideSections();
+    //pdp.form.hideSections();
+    //pdp.form.hideField('#summary'); // Do this after you disable the second 'page'
+    pdp.app.changeSection.bind( pdp.app );
+  });
+
+  $('#summary-table-button').on( 'click', function( ev ){
+    ev.preventDefault();
+    pdp.form.showField('#summary');
+    pdp.form.hideField('.download-share');
+    pdp.form.hideSections();
+    pdp.observer.emitEvent( 'navigation:clicked', [ targetSection ] );
+    pdp.app.changeSection.bind( pdp.app );
+  });
+
+  // Action to show filters to narrow down data - in process, hide the download button.
+  $('.show-filters').on( 'click', function( ev ){
+    ev.preventDefault();
+    if( pdp.form.filtersShown ){
+      pdp.form.hideSections();
+    } else {
+      pdp.form.showSections();
+    }
+  });
 
   // Add a new location section whenever the `#add-state` link is clicked.
   $('a#add-state').on( 'click', function( ev ){

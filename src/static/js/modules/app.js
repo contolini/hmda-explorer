@@ -98,6 +98,8 @@ var PDP = (function ( pdp ) {
     if ( !_.isEmpty( pdp.utils.getHashParams() ) ) {
       $('.field.suggested select').val('custom').trigger('liszt:updated');
       pdp.form.showSections();
+      pdp.form.showField('#find-answers');
+      pdp.form.showField('#top-count'); // If custom is there, make sure we still show the Find Answers section
     }
 
     // Broadcast that the app has started.
@@ -223,7 +225,7 @@ var PDP = (function ( pdp ) {
     pdp.form.checkFilters();
 
     // Scroll to the top of the page.
-    window.scrollTo(0,0);
+    // window.scrollTo(0,0); //Disabled for this sprint when we remove all this
 
     if ( changeUrl ) {
       // Update URL hash

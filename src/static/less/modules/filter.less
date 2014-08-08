@@ -31,23 +31,17 @@
   }
 
   .title {
-    padding: 20px 0;
+    padding: 20px 0 20px 14px;
     &:hover {
       cursor: pointer;
     }
-  }
-
-  .intro {
-    padding-top: 10px;
-    .column( 11 );
-  }
-  
-  h3 {
+    h3 {
     text-transform: uppercase;
     color: @pacific;
     display: inline-block;
     padding-left: 15px;
     font-size: 1em;
+    width: 150px;
 
     i {
       padding-right: 10px;
@@ -57,6 +51,13 @@
 
   }
 
+  }
+
+  .intro {
+    padding-top: 10px;
+    .column( 11 );
+  }
+  
   .desc {
     margin-left: 15px;
     margin-top: 15px;
@@ -264,10 +265,6 @@
       }
     }
 
-    h3 {
-      padding-left: 30px;
-    }
-
     .desc {
       display: inline-block;
       font-size: 1em;
@@ -275,11 +272,11 @@
       margin-top: 0;
     }
 
-    .next-steps {
-      a.action-arrow {
-        margin-top: 34px;
-      }
-    }
+    // .next-steps {
+    //   a.action-arrow {
+    //     margin-top: 34px;
+    //   }
+    // }
 
     .widget {
       width: 35%;
@@ -361,21 +358,36 @@
   }
 
   .filter.year {
+    padding: 30px;
+    .onboarding {
+      .column(6);
+    }
     .fields {
-      margin: 30px 0;
+      .column(6);
+      margin: 5px 0;
     }
     label {
-      width: 20%;
+      width: 80%;
+      display: block;
       text-align: left;
-      margin-left: 30px;
+      margin-left: 15px;
+    }
+    .widget {
+      width: 80%;
+    }
+    #get_started{
+      margin-left: 15px;
+      a {
+        display: inline-block;
+      }
     }
   }
 
   .widget {
-    width: 55%;
+    width: 95%;
    &.checkbox-inline {
       label {
-        width: 40%;
+        width: 75%;
         display: inline-block;
         margin-right: 19px;
         &:last-child {
@@ -405,7 +417,7 @@
 
   .filter.footer {
     .need-more {
-      width: 63%;
+      width: 100%;
     }
     .insight {
       float: right;

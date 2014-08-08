@@ -17,12 +17,17 @@ var PDP = (function ( pdp ) {
   // Set a counter so group set IDs are unique (never decremented)
   form.locationSetNum = 1;
 
+  // Determine if the filters are being shown on the page (false by default)
+  form.filtersShown = false;
+
   // Cache a reference to all the filter fields.
   form.init = function() {
     this.$fields = form.$el.find('.field:not(.ignore)');
     if ( !_.isEmpty( pdp.utils.getHashParams() ) ) {
       pdp.form.setCustom( 'User modified (see filters below)' );
       pdp.form.selectCustom();
+      pdp.form.showFilter('#top-count');
+      pdp.form.showFilter('#find-answers');
     }
   };
 
@@ -48,12 +53,16 @@ var PDP = (function ( pdp ) {
   form.hideSections = function() {
     $('.filter:not(.year)').not('.footer').addClass('hidden');
     $('.year .intro').addClass('hidden');
+    form.filtersShown = false;
+    $('#show_hide_filter').html('Change My Filters <span class="btn_icon__right cf-icon cf-icon-down">');
   };
 
   // The `showSections` method shows all filter sections (location, applicant, lender, etc.)
   form.showSections = function() {
     $('.filter:not(.year)').not('.footer').removeClass('hidden');
     $('.year .intro').removeClass('hidden');
+    form.filtersShown = true;
+    $('#show_hide_filter').html('Hide my Filters<span class="btn_icon__right cf-icon cf-icon-up">');
   };
 
   // The `setCustom` method modifies the custom suggested filter text.

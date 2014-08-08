@@ -99,6 +99,10 @@
     margin-left: 10px;
   }
 
+  .top-count {
+    text-align: center;
+  }
+
   // File size estimation
   .download-size {
     font-style: italic;
@@ -197,6 +201,7 @@
 
   .share_url {
     width: 100%;
+    display:inline;
   }
 
   .help {
@@ -383,9 +388,18 @@
   .download-share.no-summary {
 
     section {
-      .column( 6 );
+      //.column( 12 );
       .inner {
-        min-height: 275px;
+        //min-height: 275px;
+      }
+      .fivecol { 
+        .column( 5 );
+      }
+      .fourcol {
+        .column( 4 );
+      }
+      .threecol {
+        .column( 3 );
       }
     }
 
@@ -394,9 +408,18 @@
   .download-share.summary {
 
     section {
-      .column( 4 );
+      //.column( 12 );
       .inner {
-        min-height: 290px;
+        //min-height: 290px;
+      }
+      .fivecol { 
+        .column( 5 );
+      }
+      .fourcol {
+        .column( 4 );
+      }
+      .threecol {
+        .column( 3 );
       }
     }
 
