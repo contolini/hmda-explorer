@@ -800,10 +800,10 @@
             <option value="avg_loan_amount_000s" class="indent" data-verbose="Average loan amount">Average</option>
             <option value="sum_loan_amount_000s" class="indent" data-verbose="Sum Total">Sum Total</option>
           </select>
-        </div>
-        <div class="submit-summary">
-          <button class="submit-btn" id="summary-submit">Submit</button></p>
-        </div>     
+          <div class="submit-summary">
+           <button class="submit-btn" id="summary-submit">Submit</button></p>
+          </div>   
+        </div>  
       </div>
 
       <div id="error"></div>
@@ -818,15 +818,16 @@
           <h2>Download table</h2>
 
           <div class="inner">
-
-            <label for="summary-table-format">Summary table file format:</label>
-            <div class="select widget">
-              <select name="summary-table-format" id="summary-table-format">
-                <option value="csv">Spreadsheet (CSV)</option>
-                <option value="json">JSON</option>
-                <option value="jsonp">JSONP</option>
-                <option value="xml">XML</option>
-              </select>
+            <div class="summary-module">
+              <label for="summary-table-format">Summary table file format:</label>
+              <div class="select widget">
+                <select name="summary-table-format" id="summary-table-format">
+                  <option value="csv">Spreadsheet (CSV)</option>
+                  <option value="json">JSON</option>
+                  <option value="jsonp">JSONP</option>
+                  <option value="xml">XML</option>
+                </select>
+              </div>
             </div>
 
             <div class="msg mobile-warning">
@@ -835,7 +836,7 @@
 
             </div>
 
-            <div class="action">
+            <div class="action summary-module">
 
               <button type="submit" class="submit btn btn-bump-down" id="download-summary-button"><i class="cf-icon cf-icon-download"></i>Download</button>
 
