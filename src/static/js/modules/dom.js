@@ -18,16 +18,13 @@ var PDP = (function ( pdp ) {
 
   // Act appropriately when suggested filter sets are changed.
   $('.field.suggested').on( 'change', _.debounce(function( ev ){
-
     var $field = $('.field.suggested select'),
-        preset = $field.val(),
-        parents;
-
-    ev.preventDefault();
+    preset = $field.val(),
+    parents;
 
     // Log event to GA
     track( 'Page Interaction', 'Filters', preset );
-
+  
     if ( preset === 'custom' ) {
       return;
     } else if ( preset === 'default' ) {
@@ -36,13 +33,20 @@ var PDP = (function ( pdp ) {
       pdp.query.reset( preset );
     }
 
-    pdp.form.resetFields();
-    pdp.form.setFields();
-    //pdp.form.showSections();
-    pdp.form.showField('#top-count');
-    pdp.form.showField('#find-answers');
-    pdp.form.showField('#summary');
-    pdp.form.updateShareLink();
+    if( pdp.form.gottenStarted ){
+      pdp.form.handlePreset();
+    }
+
+  }, 100));
+
+  $('#get_started_button').on( 'click', _.debounce(function( ev ){
+    ev.preventDefault();
+
+    if ( !pdp.form.gottenStarted ){
+      pdp.form.handlePreset();
+      pdp.form.startedButtonChange();
+      pdp.form.gottenStarted = true;
+    }
 
   }, 100));
 
@@ -81,12 +85,14 @@ var PDP = (function ( pdp ) {
   });
 
   $('#summary-table-button').on( 'click', function( ev ){
+    //var targetSection = $( this ).attr('href').replace('#', '');
+
     ev.preventDefault();
     pdp.form.showField('#summary');
     pdp.form.hideField('.download-share');
     pdp.form.hideSections();
-    pdp.observer.emitEvent( 'navigation:clicked', [ targetSection ] );
-    pdp.app.changeSection.bind( pdp.app );
+    //pdp.observer.emitEvent( 'navigation:clicked', [ targetSection ] );
+    //pdp.app.changeSection.bind( pdp.app );
   });
 
   // Action to show filters to narrow down data - in process, hide the download button.

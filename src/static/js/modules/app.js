@@ -47,6 +47,7 @@ var PDP = (function ( pdp ) {
     } else {
       // Clear out any cached values.
       pdp.query.reset();
+      pdp.form.checkPreset();
     }
 
     // Give our app a special class.
@@ -97,9 +98,11 @@ var PDP = (function ( pdp ) {
     // Switch it into custom mode if need be.
     if ( !_.isEmpty( pdp.utils.getHashParams() ) ) {
       $('.field.suggested select').val('custom').trigger('liszt:updated');
-      pdp.form.showSections();
+      pdp.form.gottenStarted = true;
       pdp.form.showField('#find-answers');
       pdp.form.showField('#top-count'); // If custom is there, make sure we still show the Find Answers section
+      pdp.form.showField('#summary');
+      pdp.form.startedButtonChange();
     }
 
     // Broadcast that the app has started.

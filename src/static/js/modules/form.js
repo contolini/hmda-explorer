@@ -20,6 +20,9 @@ var PDP = (function ( pdp ) {
   // Determine if the filters are being shown on the page (false by default)
   form.filtersShown = false;
 
+  // Determine if the user has "gotten started"
+  form.gottenStarted = false;
+
   // Cache a reference to all the filter fields.
   form.init = function() {
     this.$fields = form.$el.find('.field:not(.ignore)');
@@ -47,6 +50,53 @@ var PDP = (function ( pdp ) {
     }, 3000);
 
   });
+
+  // If the user has gotten started, then change the GetStarted button
+  form.startedButtonChange = function(){
+      var button = $('#get_started_button');
+      button.text('Start Over');
+      button.removeClass('btn-primary').addClass('btn-link');
+      button.attr('id', '#start_over_button');
+      button.on( 'click', function( ev ){
+        ev.preventDefault();
+        pdp.form.hideSections();
+        $.removeCookie('_hmda');
+        pdp.query.reset();
+        pdp.form.resetFields(true);
+        pdp.form.setFields();
+        pdp.form.updateShareLink();
+        pdp.preview.update();
+        $('.field.suggested select').val('default').trigger('liszt:updated');
+      });
+  };
+
+  // This `handlePreset` function changes the page when a preset is selected which
+  // allows for repeatable, DRY behavior depending on whether a user is started
+  form.checkPreset = function() {
+    var $field = $('.field.suggested select'),
+    preset = $field.val(),
+    parents;
+    // Log event to GA
+    track( 'Page Interaction', 'Filters', preset );
+  
+    if ( preset === 'custom' ) {
+      return;
+    } else if ( preset === 'default' ) {
+      pdp.query.reset();
+    } else {
+      pdp.query.reset( preset );
+    }
+  };
+
+  form.handlePreset = function() {
+    //form.resetFields();
+    form.setFields();
+    // form.checkPreset();
+    form.showField('#top-count');
+    form.showField('#find-answers');
+    form.showField('#summary');
+    form.updateShareLink();
+  };
 
   // The `hideSections` method hides all filter sections (location, applicant, lender, etc.)
   // This is used if a filter set other than `custom` is chosen.
