@@ -24,7 +24,7 @@ var PDP = (function ( pdp ) {
 
     // Log event to GA
     track( 'Page Interaction', 'Filters', preset );
-  
+    
     if ( preset === 'custom' ) {
       return;
     } else if ( preset === 'default' ) {

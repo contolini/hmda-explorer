@@ -89,7 +89,7 @@ var PDP = (function ( pdp ) {
   };
 
   form.handlePreset = function() {
-    //form.resetFields();
+    form.resetFields();
     form.setFields();
     // form.checkPreset();
     form.showField('#top-count');
