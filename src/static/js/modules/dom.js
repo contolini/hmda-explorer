@@ -18,20 +18,7 @@ var PDP = (function ( pdp ) {
 
   // Act appropriately when suggested filter sets are changed.
   $('.field.suggested').on( 'change', _.debounce(function( ev ){
-    var $field = $('.field.suggested select'),
-    preset = $field.val(),
-    parents;
-
-    // Log event to GA
-    track( 'Page Interaction', 'Filters', preset );
-    
-    if ( preset === 'custom' ) {
-      return;
-    } else if ( preset === 'default' ) {
-      pdp.query.reset();
-    } else {
-      pdp.query.reset( preset );
-    }
+    pdp.form.checkPreset();
 
     if( pdp.form.gottenStarted ){
       pdp.form.handlePreset();
@@ -135,10 +122,17 @@ var PDP = (function ( pdp ) {
   $('form#explore').on( 'submit', function( ev ){
     var format = $('#format').val(),
         showCodes = !!parseInt( $('.codes input[type=radio]:checked').val(), 10 ),
-        url = pdp.query.generateApiUrl( format, showCodes ) + '&$limit=0';
+        url = pdp.query.generateApiUrl( format, showCodes ) + '&$limit=0',       
+        isStaticFileAvailable = pdp.form.checkStatic();
+
+    if( isStaticFileAvailable ){
+      url = isStaticFileAvailable + '.' + format;
+    }
+
+    console.log( 'This is the URL being passed to app redirect: ', url );
 
     // Log event to GA
-    track( 'downloads', 'HMDA raw data', 'filter-page:' + url );
+    // track( 'downloads', 'HMDA raw data', 'filter-page:' + url );
 
     ev.preventDefault();
     pdp.app.redirect( url );
@@ -150,11 +144,16 @@ var PDP = (function ( pdp ) {
 
     var format = $('#raw-format').val(),
         showCodes = !!parseInt( $('.raw-codes input[type=radio]:checked').val(), 10 ),
-        url = pdp.query.generateApiUrl( format, showCodes ) + '&$limit=0';
+        url = pdp.query.generateApiUrl( format, showCodes ) + '&$limit=0',
+        isStaticFileAvailable = pdp.form.checkStatic();
+
+    if( isStaticFileAvailable ){
+      url = isStaticFileAvailable + '.' + format;
+    }
 
     // Log event to GA
-    track( 'downloads', 'HMDA raw data', 'summary-table-page:' + url );
-
+    //track( 'downloads', 'HMDA raw data', 'summary-table-page:' + url );
+    console.log( 'This is the URL being passed to app redirect: ', url );
     ev.preventDefault();
     pdp.app.redirect( url );
 

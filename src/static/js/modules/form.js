@@ -23,6 +23,9 @@ var PDP = (function ( pdp ) {
   // Determine if the user has "gotten started"
   form.gottenStarted = false;
 
+  // Set a static files endpoint (configurable depending on S3 location)
+  form.staticEndpoint = '/';
+
   // Cache a reference to all the filter fields.
   form.init = function() {
     this.$fields = form.$el.find('.field:not(.ignore)');
@@ -86,12 +89,12 @@ var PDP = (function ( pdp ) {
     } else {
       pdp.query.reset( preset );
     }
+    console.log('Check Preset Run');
   };
 
   form.handlePreset = function() {
     form.resetFields();
     form.setFields();
-    // form.checkPreset();
     form.showField('#top-count');
     form.showField('#find-answers');
     form.showField('#summary');
@@ -695,6 +698,26 @@ var PDP = (function ( pdp ) {
 
     $('.share_url').val( baseUrl + '#' + hash );
 
+  };
+
+  // Check to see if a static file has been generated for this API Query string
+  // If a static file is present in the mapping, re-route the download function
+  // to a static file as indicated in mapping.js
+  form.checkStatic = function(){
+    var apiCallParams = pdp.query.params,
+    hmdaMapLoc = fileMap.slices[0].staticFiles;
+
+    // Remove the select parameters that may be there after summary table generation
+    apiCallParams = pdp.query.removeSelectParam( apiCallParams );
+    // Get the exact value for comparison with mapping.js
+    apiCallParams = PDP.query._buildApiQuery(apiCallParams);
+
+    // If a static file exists, then return the appropriate URL
+    if( typeof hmdaMapLoc[apiCallParams] === 'undefined' ){
+      return false;
+    } else {
+      return form.staticEndpoint + hmdaMapLoc[apiCallParams];
+    }
   };
 
   pdp.form = form;

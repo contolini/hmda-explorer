@@ -65,11 +65,11 @@ var PDP = (function ( pdp ) {
             values: [1],
             comparator: '='
           },
-          lien_status: {
+          action_taken: {
             values: [1],
             comparator: '='
           },
-          action_taken: {
+          lien_status: {
             values: [1],
             comparator: '='
           }
