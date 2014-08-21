@@ -89,7 +89,6 @@ var PDP = (function ( pdp ) {
     } else {
       pdp.query.reset( preset );
     }
-    console.log('Check Preset Run');
   };
 
   form.handlePreset = function() {
@@ -101,7 +100,7 @@ var PDP = (function ( pdp ) {
     form.updateShareLink();
   };
 
-  // The `hideSections` method hides all filter sections (location, applicant, lender, etc.)
+  // The `hideSec tions` method hides all filter sections (location, applicant, lender, etc.)
   // This is used if a filter set other than `custom` is chosen.
   form.hideSections = function() {
     $('.filter:not(.year)').not('.footer').addClass('hidden');
@@ -150,6 +149,7 @@ var PDP = (function ( pdp ) {
     });
 
     $el.removeClass('closed').attr( 'title', '' );
+    $el.addClass('shown');
     pdp.observer.emitEvent( 'filter:shown', el );
 
   };
@@ -716,7 +716,7 @@ var PDP = (function ( pdp ) {
     if( typeof hmdaMapLoc[apiCallParams] === 'undefined' ){
       return false;
     } else {
-      return form.staticEndpoint + hmdaMapLoc[apiCallParams];
+      return fileMap.endpoint + hmdaMapLoc[apiCallParams];
     }
   };
 

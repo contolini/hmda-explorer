@@ -43,14 +43,19 @@
     font-size: 1em;
     width: 150px;
 
-    i {
-      padding-right: 10px;
-      font-size: 1em;
-      position: relative;
+      i {
+        padding-right: 10px;
+        font-size: 1em;
+        position: relative;
+      }
+
     }
-
-  }
-
+    .filter-active {
+      color: @pacific;
+      display: inline-block;
+      float: right;
+      right: 50px;
+    }
   }
 
   .intro {
@@ -251,6 +256,28 @@
 
 @media only screen and ( min-width: 768px ) {
 
+  .col3 {
+    .column(3);
+  }
+  .col4 {
+    .column(4);
+  }
+  .col5 {
+    .column(5);
+  }
+  .col6 {
+    .column(6);
+  }
+  .col7 {
+    .column(7);
+  }
+  .col8 {
+    .column(8);
+  }
+  .col9 {
+    .column(9);
+  }
+
   .filter {
 
     .intro {
@@ -376,7 +403,6 @@
       width: 80%;
     }
     #get_started{
-      margin-left: 15px;
       a {
         display: inline-block;
       }

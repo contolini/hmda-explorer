@@ -22,6 +22,9 @@ var PDP = (function ( pdp ) {
 
     if( pdp.form.gottenStarted ){
       pdp.form.handlePreset();
+    } else {
+      pdp.form.resetFields();
+      pdp.form.setFields();
     }
 
   }, 100));
@@ -122,11 +125,11 @@ var PDP = (function ( pdp ) {
   $('form#explore').on( 'submit', function( ev ){
     var format = $('#format').val(),
         showCodes = !!parseInt( $('.codes input[type=radio]:checked').val(), 10 ),
-        url = pdp.query.generateApiUrl( format, showCodes ) + '&$limit=0',       
+        url = pdp.query.generateApiUrl( format, showCodes ) + '&$limit=0',     
         isStaticFileAvailable = pdp.form.checkStatic();
 
-    if( isStaticFileAvailable ){
-      url = isStaticFileAvailable + '.' + format;
+    if( isStaticFileAvailable && format === 'csv' ){
+      url = isStaticFileAvailable + '.zip';
     }
 
     console.log( 'This is the URL being passed to app redirect: ', url );
@@ -148,7 +151,8 @@ var PDP = (function ( pdp ) {
         isStaticFileAvailable = pdp.form.checkStatic();
 
     if( isStaticFileAvailable ){
-      url = isStaticFileAvailable + '.' + format;
+      // If a static file is available, serve it via its URL - hard-coded as a zip for compression
+      url = isStaticFileAvailable + '.zip';
     }
 
     // Log event to GA

@@ -19,8 +19,6 @@ __p += '<ul class="fields location-set location-set-' +
 ((__t = ( num )) == null ? '' : __t) +
 '" data-dependent="county_code-' +
 ((__t = ( num )) == null ? '' : __t) +
-' census_tract_number-' +
-((__t = ( num )) == null ? '' : __t) +
 '" data-toggle="msamd-' +
 ((__t = ( num )) == null ? '' : __t) +
 '" data-placeholder="Select a state">\n        <option value=""></option>\n        <option value="1">Alabama</option>\n        <option value="2">Alaska</option>\n        <option value="4">Arizona</option>\n        <option value="5">Arkansas</option>\n        <option value="6">California</option>\n        <option value="8">Colorado</option>\n        <option value="9">Connecticut</option>\n        <option value="10">Delaware</option>\n        <option value="11">District of Columbia</option>\n        <option value="12">Florida</option>\n        <option value="13">Georgia</option>\n        <option value="15">Hawaii</option>\n        <option value="16">Idaho</option>\n        <option value="17">Illinois</option>\n        <option value="18">Indiana</option>\n        <option value="19">Iowa</option>\n        <option value="20">Kansas</option>\n        <option value="21">Kentucky</option>\n        <option value="22">Louisiana</option>\n        <option value="23">Maine</option>\n        <option value="24">Maryland</option>\n        <option value="25">Massachusetts</option>\n        <option value="26">Michigan</option>\n        <option value="27">Minnesota</option>\n        <option value="28">Mississippi</option>\n        <option value="29">Missouri</option>\n        <option value="30">Montana</option>\n        <option value="31">Nebraska</option>\n        <option value="32">Nevada</option>\n        <option value="33">New Hampshire</option>\n        <option value="34">New Jersey</option>\n        <option value="35">New Mexico</option>\n        <option value="36">New York</option>\n        <option value="37">North Carolina</option>\n        <option value="38">North Dakota</option>\n        <option value="39">Ohio</option>\n        <option value="40">Oklahoma</option>\n        <option value="41">Oregon</option>\n        <option value="42">Pennsylvania</option>\n        <option value="44">Rhode Island</option>\n        <option value="45">South Carolina</option>\n        <option value="46">South Dakota</option>\n        <option value="47">Tennessee</option>\n        <option value="48">Texas</option>\n        <option value="49">Utah</option>\n        <option value="50">Vermont</option>\n        <option value="51">Virginia</option>\n        <option value="53">Washington</option>\n        <option value="54">West Virginia</option>\n        <option value="55">Wisconsin</option>\n        <option value="56">Wyoming</option>\n        <option value="72">Puerto Rico</option>\n      </select>\n    </div>\n  </li>\n  <!-- /filter field -->\n\n  <li class="location-separator">\n      <span>- or -</span>\n  </li>\n\n  <!-- filter field -->\n  <li class="field msamd msamd-' +
@@ -41,6 +39,8 @@ __p += '<ul class="fields location-set location-set-' +
 ((__t = ( num )) == null ? '' : __t) +
 '" id="county_code-' +
 ((__t = ( num )) == null ? '' : __t) +
+'" data-dependent="census_tract_number-' +
+((__t = ( num )) == null ? '' : __t) +
 '" multiple data-concept="fips" data-concept-property="county_name" data-placeholder="Select a state above" data-pre-placeholder="Select a state above" data-post-placeholder="Select a county" disabled>\n      </select>\n    </div>\n  </li>\n  <!-- /filter field -->\n\n  <!-- filter field -->\n  <li class="field census_tract_number census_tract_number-' +
 ((__t = ( num )) == null ? '' : __t) +
 ' disabled hidden">\n    <label for="census_tract_number-' +
@@ -49,7 +49,7 @@ __p += '<ul class="fields location-set location-set-' +
 ((__t = ( num )) == null ? '' : __t) +
 '" id="census_tract_number-' +
 ((__t = ( num )) == null ? '' : __t) +
-'" multiple data-concept="census_tract_number" data-placeholder="Select a state above" data-pre-placeholder="Select a state above" data-post-placeholder="Select a census tract" disabled>\n      </select>\n    </div>\n    <div class="help" role="tooltip"><i class="icon-help-alt"></i></div>\n    <span class="help-text">A census tract is a small geographic area within a county. Census tracts vary in size, but on average about 4,000 people live in a census tract. Census tract numbers are unique within a county.</span>\n  </li>\n  <!-- /filter field -->\n\n<ul>\n';
+'" multiple data-concept="census_tract_number" data-placeholder="Select a county above" data-pre-placeholder="Select a county above" data-post-placeholder="Select a census tract" disabled>\n      </select>\n    </div>\n    <div class="help" role="tooltip"><i class="icon-help-alt"></i></div>\n    <span class="help-text">A census tract is a small geographic area within a county. Census tracts vary in size, but on average about 4,000 people live in a census tract. Census tract numbers are unique within a county.</span>\n  </li>\n  <!-- /filter field -->\n\n<ul>\n';
 
 }
 return __p

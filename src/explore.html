@@ -114,6 +114,23 @@
             <p>To help you get started, we have put together suggested queries that we think will help you find the information you are looking for. If you don't see an option that describes your interests, you can use a custom query to narrow down your search.</p>
           </div>
           <ul class="fields">
+
+            <!-- filter field -->
+            <li class="field as_of_year">
+              <label for="as_of_year">Include data from these years: (blank for all)</label>
+              <div class="widget select">
+                <select class="param" name="as_of_year" id="as_of_year" multiple data-placeholder="Select one or more years">
+                  <option value="2012" selected>2012</option>
+                  <option value="2011">2011</option>
+                  <option value="2010">2010</option>
+                  <option value="2009">2009</option>
+                  <option value="2008">2008</option>
+                  <option value="2007">2007</option>
+                </select>
+              </div>
+            </li>
+            <!-- /filter field -->
+            
             <!-- filter field -->
             <li class="field suggested ignore">
               <label for="suggested">Choose a preset:</label>
@@ -131,59 +148,16 @@
             </li>
             <!-- /filter field -->
 
-            <!-- filter field -->
-            <li class="field as_of_year">
-              <label for="as_of_year">Include data from these years:</label>
-              <div class="widget select">
-                <select class="param" name="as_of_year" id="as_of_year" multiple data-placeholder="Select one or more years">
-                  <option value="2012" selected>2012</option>
-                  <option value="2011">2011</option>
-                  <option value="2010">2010</option>
-                  <option value="2009">2009</option>
-                  <option value="2008">2008</option>
-                  <option value="2007">2007</option>
-                  <option value="">All years</option>
-                </select>
-              </div>
-            </li>
-            <!-- /filter field -->
             <div id="get_started">
-              <span><a href="#" id="get_started_button" class="btn btn-primary">Get Started</a></span>  
-              <!-- <span><a href="#" class="btn-link narrow-down-text">Narrow down this data</a></span> -->
+              <span class="col4"><a href="#" id="get_started_button" class="btn btn-primary">Get Started</a></span>  
+              <span class="col7"><a class="insight btn btn__secondary show-filters" href="#" id="show_hide_filter">Customize Filters <span class="btn_icon__right cf-icon cf-icon-down"></a></span>
             </div>
             
           </ul>
-<!--           <div class="intro">
 
-            <%= explore_intro_text %>
-
-          </div> -->
         </div>
 
         <!-- /filter section -->
-          <h2 class="nlw top-count hidden" id="top-count">
-            There are <em class="calculating"><img src="static/img/icon_spinner_2x.gif" alt="Loading icon" height="30" width="30" class="spinnergif"></em><strong class="count">many</strong> HMDA records from <strong class="years">2007 - 2012</strong><span class="filter-selection"> with the selected filters</span>.
-          </h2>
-
-        <!-- filter footer -->
-
-        <div class="filter footer hidden" id="find-answers">
-          <div class="next-steps">
-            <div class="need-more">
-              <h3>Find answers here or there</h3>
-              <p>Summary tables enable you to group, compare, and generate interesting information about these records right from your browser.  You'll be able to download the table to create charts, graphs, or pivot tables using common office software. If you need to do in-depth analysis, download the raw data to use in your favorite statistical package.</p>
-              <p>Not sure how much detail you need? Try both! You won't lose your filters unless you refresh your browser.</p>
-              <a href="#" class="btn btn-primary" id="summary-table-button">View a Summary</a>
-              <a href="#" class="btn btn-primary" id="view-raw-data-button">Get raw data</a>
-              <a class="insight btn btn__secondary show-filters" href="#" id="show_hide_filter">Change My Filters <span class="btn_icon__right cf-icon cf-icon-down"></a>
-            </div>
-              
-          </div>
-
-        </div>
-
-        <!-- /filter footer -->
-        
         <!-- filter section -->
 
         <div class="filter location closed" id="location">
@@ -193,7 +167,7 @@
             <a href="#location"><h3><i class="cf-icon cf-icon-minus-round"></i> Location</h3></a>
 
             <div class="desc">State, metro area, county, and census tract of the property</div>
-
+            <span class="filter-active hidden"><i class="cf-icon cf-icon-approved-round"></i></span> 
           </div>
 
           <div id="location-sets"></div>
@@ -626,6 +600,29 @@
         </div>
 
         <!-- /filter section -->
+          <h2 class="nlw top-count hidden" id="top-count">
+            There are <em class="calculating"><img src="static/img/icon_spinner_2x.gif" alt="Loading icon" height="30" width="30" class="spinnergif"></em><strong class="count">many</strong> HMDA records from <strong class="years">2007 - 2012</strong><span class="filter-selection"> with the selected filters</span>.
+          </h2>
+
+        <!-- filter footer -->
+
+        <div class="filter footer hidden" id="find-answers">
+          <div class="next-steps">
+            <div class="need-more">
+              <h3>Find answers here or there</h3>
+              <p>Summary tables enable you to group, compare, and generate interesting information about these records right from your browser.  You'll be able to download the table to create charts, graphs, or pivot tables using common office software. If you need to do in-depth analysis, download the raw data to use in your favorite statistical package.</p>
+              <p>Not sure how much detail you need? Try both! You won't lose your filters unless you refresh your browser.</p>
+              <a href="#" class="btn btn-primary" id="summary-table-button">View a Summary</a>
+              <a href="#" class="btn btn-primary" id="view-raw-data-button">Get raw data</a>
+            </div>
+              
+          </div>
+
+        </div>
+
+        <!-- /filter footer -->
+        
+        
         <!-- download and share section -->
 
         <div class="download-share no-summary hidden">
@@ -859,8 +856,8 @@
 
   <%= footer %>
 
-  <script src="static/js/main.min.js"></script>
-  <script src="static/js/explore.min.js"></script>
-  <script src="static/js/mapping.js"></script>
+  <script src="static/js/main.min.js" type="text/javascript"></script>
+  <script src="static/js/explore.min.js" type="text/javascript"></script>
+  <script src="https://s3-us-west-2.amazonaws.com/cfpbtest/hmda.js" type="text/javascript"></script>
 </body>
 </html>
