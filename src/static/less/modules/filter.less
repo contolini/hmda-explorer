@@ -192,11 +192,91 @@
 
   .next-steps {
     padding: 30px;
+    background: @light_field10;
   }
 
   select {
     width: 100%;
   }
+
+
+  /* TABS */
+  .tabs { 
+      margin: 0 0 1em;
+      
+      ul.cf-tablist {
+          outline: 0;
+          .clearfix();
+          border-bottom: 4px solid @black;
+          list-style-type: none;
+          margin: 0; 
+          padding: 0;
+
+          li {
+              
+              float: left;
+              margin: 0;
+              padding: 0;
+              
+              a {
+                  // font
+                  outline: 0;
+                  color: @black;
+                  cursor: pointer;
+                  text-decoration: none;
+                  // over-ride bottom borders from CFPB global styles.css 
+                  border-bottom: none;
+
+                  //tab color
+                  background-color: @light_field20;
+
+                  // position
+                  position: relative; 
+                  display: block; 
+                  top: 0;
+
+                  margin-right: .5em;
+                  padding: .5em 2em;
+
+                  &.active {
+                      background-color: @gold;
+                      color: @black;
+
+                      &:hover {
+                          background-color: @gold80;
+                          border: 0px solid @light_field20;
+                      }    
+                  }
+
+                  &:hover {
+                      background-color: @gold80;
+                      color: @black;
+
+                  }
+
+                  &:hover,
+                  &:focus {
+                      /* over-ride bottom borders from CFPB global styles.css */
+                      border-bottom: none;
+                  }
+              } //a
+          } //li
+      } //ul.cf-tablist
+
+
+      .cf-tabpanel {
+          background: none;
+          padding: 1em 0;
+
+          > div {
+              .clearfix();
+              min-height: 4em;
+          }
+          
+      } //cf-tabpanel
+
+  } //tabs
+  /* END TABS */
 
 }
 

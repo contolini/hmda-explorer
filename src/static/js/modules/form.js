@@ -386,6 +386,7 @@ var PDP = (function ( pdp ) {
 
     // Fetch form field options and set fields when that request is fulfilled.
     conceptFetch.done( function( data ) {
+      console.log( 'data: ', data );
 
       // Grab the id of this element's dependency (e.g. state_code), @TODO rework this
       // as it's kinda dumb and inefficient.
@@ -488,7 +489,8 @@ var PDP = (function ( pdp ) {
       // Census tract concept data is a format totally different from normal concept data so
       // we have to handle it in a special way.
       case 'census_tract_number':
-        promise = pdp.utils.getJSON( pdp.query.endpoint + 'slice/census_tracts.' + pdp.query.format + '?&$where=state_code=' + dependencies[0] + '&$limit=1000' );
+        console.log('dependencies: ', dependencies );
+        promise = pdp.utils.getJSON( pdp.query.endpoint + 'slice/census_tracts.' + pdp.query.format + '?&$where=state_code=6+AND+county_code=' + dependencies[0] + '&$limit=1000' );
         break;
 
       // Default course for getting concept data.
@@ -586,7 +588,7 @@ var PDP = (function ( pdp ) {
   // Check if any filter fields need to be shown or hidden.
   // @names = array of param keys (e.g. as_of_year)
   form.checkDeps = function( names ) {
-
+    console.log('names: ', names );
     // Ensure names is an array.
     names = names instanceof Array ? names : [ names ];
 
@@ -602,6 +604,7 @@ var PDP = (function ( pdp ) {
       var $el = $( '#' + name ),
           dependents = $el.attr('data-dependent'),
           $dependents;
+          console.log('dependents: ', $dependents );
 
       // If the form field does in fact have any dependents.
       if ( dependents ) {

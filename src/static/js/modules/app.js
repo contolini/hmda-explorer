@@ -90,7 +90,7 @@ var PDP = (function ( pdp ) {
     pdp.form.checkFilters();
 
     // Hide the preview table.
-    $('#preview').hide();
+    //$('#preview').hide();
 
     // Change sections if necessary.
     app.changeSection( app.currentSection, false );

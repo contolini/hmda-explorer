@@ -15,7 +15,7 @@ var PDP = (function ( pdp ) {
   // cache input fields
   table._inputs = {};
   table._inputs.all = $('*[data-summary-table-input]');
-  table._inputs.varFields = [$('#variable0'), $('#variable1'), $('#variable2')];
+  table._inputs.varFields = [ $('#variable0'), $('#variable1'), $('#variable2') ];
   table._inputs.calculate = $('#calculate-by');
 
   table.genericError = 'Sorry, something went awry when we tried to load your data. Please try again?';
@@ -115,7 +115,7 @@ var PDP = (function ( pdp ) {
 
   // inits chosen library to make pretty form fields
   table._chosenInit = function() {
-    this.$el.find('select').chosen({
+    this.$el.find('.drop-downs select').chosen({
       width: '100%',
       disable_search_threshold: 10
     });
