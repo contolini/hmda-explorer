@@ -19,7 +19,7 @@ __p += '<ul class="fields location-set location-set-' +
 ((__t = ( num )) == null ? '' : __t) +
 '" data-dependent="county_code-' +
 ((__t = ( num )) == null ? '' : __t) +
-' census_tract_number-' +
+'" data-dependent="census_tract_number-' +
 ((__t = ( num )) == null ? '' : __t) +
 '" data-toggle="msamd-' +
 ((__t = ( num )) == null ? '' : __t) +
@@ -41,6 +41,8 @@ __p += '<ul class="fields location-set location-set-' +
 ((__t = ( num )) == null ? '' : __t) +
 '" id="county_code-' +
 ((__t = ( num )) == null ? '' : __t) +
+'" data-dependent="census_tract_number-' +
+((__t = ( num )) == null ? '' : __t) +
 '" multiple data-concept="fips" data-concept-property="county_name" data-placeholder="Select a state above" data-pre-placeholder="Select a state above" data-post-placeholder="Select a county" disabled>\n      </select>\n    </div>\n  </li>\n  <!-- /filter field -->\n\n  <!-- filter field -->\n  <li class="field census_tract_number census_tract_number-' +
 ((__t = ( num )) == null ? '' : __t) +
 ' disabled hidden">\n    <label for="census_tract_number-' +
@@ -49,7 +51,7 @@ __p += '<ul class="fields location-set location-set-' +
 ((__t = ( num )) == null ? '' : __t) +
 '" id="census_tract_number-' +
 ((__t = ( num )) == null ? '' : __t) +
-'" multiple data-concept="census_tract_number" data-placeholder="Select a state above" data-pre-placeholder="Select a state above" data-post-placeholder="Select a census tract" disabled>\n      </select>\n    </div>\n    <div class="help" role="tooltip"><i class="icon-help-alt"></i></div>\n    <span class="help-text">A census tract is a small geographic area within a county. Census tracts vary in size, but on average about 4,000 people live in a census tract. Census tract numbers are unique within a county.</span>\n  </li>\n  <!-- /filter field -->\n\n<ul>\n';
+'" multiple data-concept="census_tract_number" data-placeholder="Select a county above" data-pre-placeholder="Select a county above" data-post-placeholder="Select a census tract" disabled>\n      </select>\n    </div>\n    <div class="help" role="tooltip"><i class="icon-help-alt"></i></div>\n    <span class="help-text">A census tract is a small geographic area within a county. Census tracts vary in size, but on average about 4,000 people live in a census tract. Census tract numbers are unique within a county.</span>\n  </li>\n  <!-- /filter field -->\n\n<ul>\n';
 
 }
 return __p

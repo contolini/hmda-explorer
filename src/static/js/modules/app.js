@@ -47,6 +47,7 @@ var PDP = (function ( pdp ) {
     } else {
       // Clear out any cached values.
       pdp.query.reset();
+      pdp.form.checkPreset();
     }
 
     // Give our app a special class.
@@ -89,7 +90,7 @@ var PDP = (function ( pdp ) {
     pdp.form.checkFilters();
 
     // Hide the preview table.
-    $('#preview').hide();
+    //$('#preview').hide();
 
     // Change sections if necessary.
     app.changeSection( app.currentSection, false );
@@ -97,7 +98,11 @@ var PDP = (function ( pdp ) {
     // Switch it into custom mode if need be.
     if ( !_.isEmpty( pdp.utils.getHashParams() ) ) {
       $('.field.suggested select').val('custom').trigger('liszt:updated');
-      pdp.form.showSections();
+      pdp.form.gottenStarted = true;
+      pdp.form.showField('#find-answers');
+      pdp.form.showField('#top-count'); // If custom is there, make sure we still show the Find Answers section
+      pdp.form.showField('#summary');
+      pdp.form.startedButtonChange();
     }
 
     // Broadcast that the app has started.
@@ -223,7 +228,7 @@ var PDP = (function ( pdp ) {
     pdp.form.checkFilters();
 
     // Scroll to the top of the page.
-    window.scrollTo(0,0);
+    // window.scrollTo(0,0); //Disabled for this sprint when we remove all this
 
     if ( changeUrl ) {
       // Update URL hash

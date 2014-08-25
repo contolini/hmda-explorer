@@ -17,12 +17,23 @@ var PDP = (function ( pdp ) {
   // Set a counter so group set IDs are unique (never decremented)
   form.locationSetNum = 1;
 
+  // Determine if the filters are being shown on the page (false by default)
+  form.filtersShown = false;
+
+  // Determine if the user has "gotten started"
+  form.gottenStarted = false;
+
+  // Set a static files endpoint (configurable depending on S3 location)
+  form.staticEndpoint = '/';
+
   // Cache a reference to all the filter fields.
   form.init = function() {
     this.$fields = form.$el.find('.field:not(.ignore)');
     if ( !_.isEmpty( pdp.utils.getHashParams() ) ) {
       pdp.form.setCustom( 'User modified (see filters below)' );
       pdp.form.selectCustom();
+      pdp.form.showFilter('#top-count');
+      pdp.form.showFilter('#find-answers');
     }
   };
 
@@ -43,17 +54,67 @@ var PDP = (function ( pdp ) {
 
   });
 
-  // The `hideSections` method hides all filter sections (location, applicant, lender, etc.)
+  // If the user has gotten started, then change the GetStarted button
+  form.startedButtonChange = function(){
+      var button = $('#get_started_button');
+      button.text('Start Over');
+      button.removeClass('btn-primary').addClass('btn-link');
+      button.attr('id', '#start_over_button');
+      button.on( 'click', function( ev ){
+        ev.preventDefault();
+        pdp.form.hideSections();
+        $.removeCookie('_hmda');
+        pdp.query.reset();
+        pdp.form.resetFields(true);
+        pdp.form.setFields();
+        pdp.form.updateShareLink();
+        pdp.preview.update();
+        $('.field.suggested select').val('default').trigger('liszt:updated');
+      });
+  };
+
+  // This `handlePreset` function changes the page when a preset is selected which
+  // allows for repeatable, DRY behavior depending on whether a user is started
+  form.checkPreset = function() {
+    var $field = $('.field.suggested select'),
+    preset = $field.val(),
+    parents;
+    // Log event to GA
+    track( 'Page Interaction', 'Filters', preset );
+  
+    if ( preset === 'custom' ) {
+      return;
+    } else if ( preset === 'default' ) {
+      pdp.query.reset();
+    } else {
+      pdp.query.reset( preset );
+    }
+  };
+
+  form.handlePreset = function() {
+    form.resetFields();
+    form.setFields();
+    form.showField('#top-count');
+    form.showField('#find-answers');
+    form.showField('#summary');
+    form.updateShareLink();
+  };
+
+  // The `hideSec tions` method hides all filter sections (location, applicant, lender, etc.)
   // This is used if a filter set other than `custom` is chosen.
   form.hideSections = function() {
     $('.filter:not(.year)').not('.footer').addClass('hidden');
     $('.year .intro').addClass('hidden');
+    form.filtersShown = false;
+    $('#show_hide_filter').html('Change My Filters <span class="btn_icon__right cf-icon cf-icon-down">');
   };
 
   // The `showSections` method shows all filter sections (location, applicant, lender, etc.)
   form.showSections = function() {
     $('.filter:not(.year)').not('.footer').removeClass('hidden');
     $('.year .intro').removeClass('hidden');
+    form.filtersShown = true;
+    $('#show_hide_filter').html('Hide my Filters<span class="btn_icon__right cf-icon cf-icon-up">');
   };
 
   // The `setCustom` method modifies the custom suggested filter text.
@@ -88,6 +149,7 @@ var PDP = (function ( pdp ) {
     });
 
     $el.removeClass('closed').attr( 'title', '' );
+    $el.addClass('shown');
     pdp.observer.emitEvent( 'filter:shown', el );
 
   };
@@ -324,6 +386,7 @@ var PDP = (function ( pdp ) {
 
     // Fetch form field options and set fields when that request is fulfilled.
     conceptFetch.done( function( data ) {
+      console.log( 'data: ', data );
 
       // Grab the id of this element's dependency (e.g. state_code), @TODO rework this
       // as it's kinda dumb and inefficient.
@@ -426,7 +489,8 @@ var PDP = (function ( pdp ) {
       // Census tract concept data is a format totally different from normal concept data so
       // we have to handle it in a special way.
       case 'census_tract_number':
-        promise = pdp.utils.getJSON( pdp.query.endpoint + 'slice/census_tracts.' + pdp.query.format + '?&$where=state_code=' + dependencies[0] + '&$limit=1000' );
+        console.log('dependencies: ', dependencies );
+        promise = pdp.utils.getJSON( pdp.query.endpoint + 'slice/census_tracts.' + pdp.query.format + '?&$where=state_code=6+AND+county_code=' + dependencies[0] + '&$limit=1000' );
         break;
 
       // Default course for getting concept data.
@@ -524,7 +588,7 @@ var PDP = (function ( pdp ) {
   // Check if any filter fields need to be shown or hidden.
   // @names = array of param keys (e.g. as_of_year)
   form.checkDeps = function( names ) {
-
+    console.log('names: ', names );
     // Ensure names is an array.
     names = names instanceof Array ? names : [ names ];
 
@@ -540,6 +604,7 @@ var PDP = (function ( pdp ) {
       var $el = $( '#' + name ),
           dependents = $el.attr('data-dependent'),
           $dependents;
+          console.log('dependents: ', $dependents );
 
       // If the form field does in fact have any dependents.
       if ( dependents ) {
@@ -636,6 +701,26 @@ var PDP = (function ( pdp ) {
 
     $('.share_url').val( baseUrl + '#' + hash );
 
+  };
+
+  // Check to see if a static file has been generated for this API Query string
+  // If a static file is present in the mapping, re-route the download function
+  // to a static file as indicated in mapping.js
+  form.checkStatic = function(){
+    var apiCallParams = pdp.query.params,
+    hmdaMapLoc = fileMap.slices[0].staticFiles;
+
+    // Remove the select parameters that may be there after summary table generation
+    apiCallParams = pdp.query.removeSelectParam( apiCallParams );
+    // Get the exact value for comparison with mapping.js
+    apiCallParams = PDP.query._buildApiQuery(apiCallParams);
+
+    // If a static file exists, then return the appropriate URL
+    if( typeof hmdaMapLoc[apiCallParams] === 'undefined' ){
+      return false;
+    } else {
+      return fileMap.endpoint + hmdaMapLoc[apiCallParams];
+    }
   };
 
   pdp.form = form;

@@ -65,7 +65,7 @@
 }
 
 #summary-table-form {
-
+  .avenir-next;
   li:hover,
   li:focus,
   .result-selected {
@@ -157,6 +157,10 @@
     .translucent();
     font-style: italic;
   }
+  padding: 20px;
+  .summary-module {
+    .column(4);
+  }
 }
 
 // Adjustments for larger screens
@@ -204,12 +208,15 @@
   .instructions {
     .column( 12 );
     border: 0;
+    h3 {
+      .avenir-next-demi;
+    }
   }
 
   .submit-btn {
     margin-top: 0;
+    padding-right: 10px;
     float: right; 
-    position: relative;
   }
 
 }

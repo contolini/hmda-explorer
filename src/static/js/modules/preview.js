@@ -78,7 +78,7 @@ var PDP = (function ( pdp ) {
     var $title = $('.preview .title');
 
     $title.addClass('disabled');
-
+    $('.msg.preview-table').removeClass('hidden');
     $('.msg.preview-table').addClass('error').html('<i class="icon-error-alt"></i> There was a problem connecting to the API. Reload the page and if this problem persists, <a href="http://www.consumerfinance.gov/contact-us/">contact us</a>.');
 
   };
@@ -176,7 +176,7 @@ var PDP = (function ( pdp ) {
         filters = '';
         break;
       default:
-        filters = ' with the above selected filters';
+        filters = ' with the selected filters';
     }
 
     if ( years.length > 1 ) {

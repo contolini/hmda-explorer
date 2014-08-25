@@ -76,10 +76,10 @@
       <h1>Explore the data</h1>
 
       <nav role="navigation" aria-label="Explore HMDA Menu">
-        <ul>
+<!--         <ul>
           <li><a href="#filters" class="section-toggle">Custom Datasets</a></li>
           <li><a href="#summary" class="section-toggle">Summary Tables</a></li>
-        </ul>
+        </ul> -->
       </nav>
 
     </div>
@@ -103,19 +103,21 @@
 
       <!-- all filters section -->
 
-      <h2>Filter the data</h2>
+      <h1>Filter the data</h1>
 
       <div id="all">
-
         <!-- filter section -->
-
         <div class="filter year" id="year">
-
+          <h2> What questions are you trying to answer?</h2>
+          <div class="onboarding">
+            <p>This tool allows you to query HMDA Loan Application Record (LAR) information from 2007 to 2013, and download raw data.</p>
+            <p>To help you get started, we have put together suggested queries that we think will help you find the information you are looking for. If you don't see an option that describes your interests, you can use a custom query to narrow down your search.</p>
+          </div>
           <ul class="fields">
 
             <!-- filter field -->
             <li class="field as_of_year">
-              <label for="as_of_year">Select year(s) of data:</label>
+              <label for="as_of_year">Include data from these years: (blank for all)</label>
               <div class="widget select">
                 <select class="param" name="as_of_year" id="as_of_year" multiple data-placeholder="Select one or more years">
                   <option value="2012" selected>2012</option>
@@ -128,16 +130,16 @@
               </div>
             </li>
             <!-- /filter field -->
-
+            
             <!-- filter field -->
             <li class="field suggested ignore">
-              <label for="suggested">Select suggested filters:</label>
+              <label for="suggested">Choose a preset:</label>
               <div class="widget select">
                 <select name="suggested" id="suggested" data-placeholder="Select a filter set">
-                  <option value="default"></option>
                   <option value="common">Mortgages for first-lien, owner-occupied, 1-4 family homes (including manufactured housing)</option>
                   <option value="originations">All originated mortgages</option>
                   <option value="all">All records</option>
+                  <option value="default"></option>
                   <option value="custom" class="custom"></option>
                 </select>
               </div>
@@ -146,18 +148,16 @@
             </li>
             <!-- /filter field -->
 
+            <div id="get_started">
+              <span class="col4"><a href="#" id="get_started_button" class="btn btn-primary">Get Started</a></span>  
+              <span class="col7"><a class="insight btn btn__secondary show-filters" href="#" id="show_hide_filter">Customize Filters <span class="btn_icon__right cf-icon cf-icon-down"></a></span>
+            </div>
+            
           </ul>
 
-          <div class="intro">
-
-            <%= explore_intro_text %>
-
-          </div>
-          
         </div>
 
         <!-- /filter section -->
-
         <!-- filter section -->
 
         <div class="filter location closed" id="location">
@@ -167,7 +167,7 @@
             <a href="#location"><h3><i class="cf-icon cf-icon-minus-round"></i> Location</h3></a>
 
             <div class="desc">State, metro area, county, and census tract of the property</div>
-
+            <span class="filter-active hidden"><i class="cf-icon cf-icon-approved-round"></i></span> 
           </div>
 
           <div id="location-sets"></div>
@@ -600,134 +600,243 @@
         </div>
 
         <!-- /filter section -->
+          <h2 class="nlw top-count hidden" id="top-count">
+            There are <em class="calculating"><img src="static/img/icon_spinner_2x.gif" alt="Loading icon" height="30" width="30" class="spinnergif"></em><strong class="count">many</strong> HMDA records from <strong class="years">2007 - 2012</strong><span class="filter-selection"> with the selected filters</span>.
+          </h2>
 
         <!-- filter footer -->
 
-        <div class="filter footer">
+        <div class="filter footer hidden" id="find-answers">
           <div class="next-steps">
-            <div class="need-more">
-              <p class="sub-header">Need more insight?</p>
-              <p>Compare your filtered data across state, loan type, applicant race, and more with a custom summary table.</p>
+            <div class="tabs">
+              <ul>
+                  <li><a href="#tabset1-tab1">Summarize the data</a></li>
+                  <li><a href="#tabset1-tab2">Save your query</a></li>
+                  <li><a href="#tabset1-tab3">Preview the data</a></li>
+                  <li><a href="#tabset1-tab4">Get raw data</a></li>
+              </ul>
+              <div id="tabset1-tab1">
+                  <!-- group section -->
+
+                  <div id="summary" class="app-section">
+                    <div class="instructions">
+                      <h3>Compare and group by type of information</h3>
+                      <p>Choose up to three types of information and a calculation metric to get started:</p>
+                    </div>
+
+                    <div id="summary-table-form">
+                      
+                      <div class="drop-downs">
+                        <div class="variable">
+                          
+                          <select id="variable0" class="chzn-single" data-summary-table-input="both" data-placeholder="Select the first variable">
+                            <option value></option>
+                          </select>
+
+                        </div>
+
+                        <div class="variable with-reset-link">
+
+                          <select id="variable1" class="chzn-single" data-summary-table-input="both" data-placeholder="Select the second variable">
+                            <option value></option>
+                          </select>
+                          <a href="#" id="reset-variable1" class="hidden reset-field" data-summary-table-input="both">Remove</a>
+
+                        </div>
+
+                        <div class="variable with-reset-link">
+
+                          <select id="variable2" class="chzn-single" data-summary-table-input="both" data-placeholder="Select the third variable">
+                            <option value></option>
+                          </select>
+                          <a href="#" id="reset-variable2" class="hidden reset-field" data-summary-table-input="both">Remove</a>
+
+                        </div>
+
+                        <div class="calculate">
+                          <select class="chzn-single" id="calculate-by" data-summary-table-input="select" data-placeholder="Select a variable">
+                            <option value="count" class="indent">Number of records</option>
+                            <option placeholder class="placeholder" disabled="disabled">Applicant Income</option>
+                            <option value="min_applicant_income_000s" class="indent" data-verbose="Min applicant income">Min</option>
+                            <option value="max_applicant_income_000s" class="indent" data-verbose="Max applicant income">Max</option>
+                            <option value="avg_applicant_income_000s" class="indent" data-verbose="Average applicant income">Average</option>
+                            <option placeholder class="placeholder" disabled="disabled">Loan Amount</option>
+                            <option value="min_loan_amount_000s" class="indent" data-verbose="Min loan amount">Min</option>
+                            <option value="max_loan_amount_000s" class="indent" data-verbose="Max loan amount">Max</option>
+                            <option value="avg_loan_amount_000s" class="indent" data-verbose="Average loan amount">Average</option>
+                            <option value="sum_loan_amount_000s" class="indent" data-verbose="Sum Total">Sum Total</option>
+                          </select>
+                          <div class="submit-summary">
+                           <button class="submit-btn" id="summary-submit">Submit</button></p>
+                          </div>   
+                        </div>  
+                      </div>
+
+                      <div id="error"></div>
+                      <div id="summary-wrapper">
+                        <div id="summary-table-container">
+                          <div id="summary-loading">
+                              <p><img src="static/img/icon_spinner_2x.gif" alt="Loading icon" height="30" width="30" class="spinnergif"> This might take a few minutes... Please wait &mdash; we're figuring it out for you!</p>
+                          </div>
+                        </div>
+                        <section id="download-summary" class="download-summary">
+
+                          <h2>Download table</h2>
+
+                          <div class="inner">
+                            <div class="summary-module">
+                              <div class="select widget">
+                                <select name="summary-table-format" id="summary-table-format">
+                                  <option value="csv">Spreadsheet (CSV)</option>
+                                  <option value="json">JSON</option>
+                                  <option value="jsonp">JSONP</option>
+                                  <option value="xml">XML</option>
+                                </select>
+                                <label for="summary-table-format">Summary table file format:</label>
+                              </div>
+                            </div>
+
+                            <div class="msg mobile-warning">
+
+                              <%= explore_mobile_warning %>
+
+                            </div>
+
+                            <div class="action summary-module">
+
+                              <button type="submit" class="submit btn btn-bump-down" id="download-summary-button"><i class="cf-icon cf-icon-download"></i>Download</button>
+
+                            </div>
+
+                          </div>
+
+                        </section>
+                      </div>
+                      
+
+                      <div class="spinning"></div>
+                        
+                    </div>
+
+                  </div>
+
+                  <!-- /group section -->
+              </div>
+              <div id="tabset1-tab2">
+                  <label for="share_url">Save or share this link: <a class="btn-link" id="share-button" data-clipboard-target="share_url"><i class="cf-icon cf-icon-link"></i></a></label>
+                  <div class="text widget">
+                    <input type="text" id="share_url" class="share_url share-url-width" name="share_url" value="" placeholder="Select filters above">
+                  </div> 
+              </div>
+              <div id="tabset1-tab3">
+                      <!-- preview section -->
+                      <div class="msg preview-table hidden">
+                      </div>
+                      <div class="preview">
+                        <div class="title">
+                          <div id="preview">
+                            <div class="spinning"></div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /preview section -->
+              </div>
+              <div id="tabset1-tab4">
+                <!-- download and share section -->
+
+                <div class="download-share no-summary">
+
+                  <section id="download" class="download">
+
+                    <h2>Download raw data</h2>
+
+                    <div class="field inner">
+                      <div class="filesize hidden">
+                        <p class="nlw">
+                          You are about to download <strong class="bytes">1MB</strong> worth of data from <strong class="years">2007 - 2012</strong><span class="filter-selection"> with the selected filters</span>.
+                        </p>
+                        <p class="download-size"> If this file is over a 1.5GB, there's a good chance it will crash excel so you might want to think about this...</p>
+                        <div class="help" role="tooltip"><i class="cf-icon cf-icon-help-round"></i></div>
+                        <span class="help-text"><%= explore_tooltips_filesize %></span>
+
+                      </div>
+
+                      <div class="msg mobile-warning">
+
+                        <%= explore_mobile_warning %>
+
+                      </div>
+                
+                      <!-- Download Column Layout -->
+                      <div class="fivecol">
+                        <label for="format">File format:</label>
+                        <div class="select widget">
+                          <select name="format" id="format">
+                            <option value="csv">Spreadsheet (CSV)</option>
+                            <option value="json">JSON</option>
+                            <option value="jsonp">JSONP</option>
+                            <option value="xml">XML</option>
+                          </select>
+                        </div>
+
+                        <div class="radio widget codes">
+                          <label><input type="radio" name="codes" value="0" checked />Include labels</label>
+                          <label><input type="radio" name="codes" value="1" />Include labels and codes</label>
+                          
+                          <div class="help" role="tooltip"><i class="cf-icon cf-icon-help-round bump-up"></i></div>
+                          <span class="help-text"><%= explore_tooltips_download_raw_data %></span>
+                          
+                        </div>
+                      </div>
+                      <div class="fivecol">
+                        <div class="action">
+                          <button type="submit" class="submit btn" id="download-button"><i class="cf-icon cf-icon-download"></i>Download</button>
+                        </div>
+                      </div>
+                      <!-- End Download Column Layout -->
+
+                    </div>
+
+                  </section>
+
+          <!--         <section id="share" class="share">
+
+                    <h2>Save & share your work</h2>
+
+                    <div class="field inner">
+
+                      <label for="share_url">Save your filters, or share them with a link:</label>
+                      <div class="text widget">
+                        <input type="text" id="share_url" class="share_url share-url-width" name="share_url" value="" placeholder="Select filters above">
+                      </div>
+
+                      <div class="action">
+
+                        <button type="button" class="btn share btn-bump-down" id="share-button" data-clipboard-target="share_url"><i class="cf-icon cf-icon-link"></i>Share</button>
+
+                      </div>
+
+                    </div>
+
+                  </section> -->
+
+                </div>
+
+                <!-- download and share section -->   
+              </div>
             </div>
-            <div class="insight">
-              <a href="#summary" class="section-toggle action-arrow">Create a summary table<i class="cf-icon cf-icon-right"></i></a>
-            </div>
+              
           </div>
 
         </div>
 
         <!-- /filter footer -->
-
+             
       </div>
 
-      <!-- /all filters section -->
+      <!-- /all filters section <--></-->
 
-      <!-- preview section -->
-
-      <h2>Preview the results</h2>
-
-      <div class="msg preview-table">
-
-      </div>
-
-      <div class="preview closed">
-          <p class="nlw">
-            <img src="static/img/icon_data_2x.png" width="30" height="30" alt="Data icon" class="data-minicon" />
-            There are <em class="calculating"><img src="static/img/icon_spinner_2x.gif" alt="Loading icon" height="30" width="30" class="spinnergif"></em><strong class="count">many</strong> HMDA records from <strong class="years">2007 - 2012</strong><span class="filter-selection"> with the above selected filters</span>.
-          </p>
-
-          <div class="title">
-
-            <a href="#preview"><h3>Preview the first 100 rows<i class="cf-icon cf-icon-minus-round"></i></h3></a>
-
-          </div>
-
-          <div id="preview">
-            <div class="spinning"></div>
-          </div>
-        
-      </div>
-
-      <!-- /preview section -->
-
-      <!-- download and share section -->
-
-      <div class="download-share no-summary">
-
-        <section id="download" class="download">
-
-          <h2>Download raw data</h2>
-
-          <div class="inner">
-
-            <label for="format">File format:</label>
-            <div class="select widget">
-              <select name="format" id="format">
-                <option value="csv">Spreadsheet (CSV)</option>
-                <option value="json">JSON</option>
-                <option value="jsonp">JSONP</option>
-                <option value="xml">XML</option>
-              </select>
-            </div>
-
-            <div class="radio widget codes">
-              <label><input type="radio" name="codes" value="0" checked />Include labels</label>
-              <label><input type="radio" name="codes" value="1" />Include labels and codes</label>
-              
-              <div class="help" role="tooltip"><i class="cf-icon cf-icon-help-round bump-up"></i></div>
-              <span class="help-text"><%= explore_tooltips_download_raw_data %></span>
-              
-            </div>
-
-            <div class="msg mobile-warning">
-
-              <%= explore_mobile_warning %>
-
-            </div>
-
-            <div class="action">
-
-              <button type="submit" class="submit btn" id="download-button"><i class="cf-icon cf-icon-download"></i>Download</button>
-
-              <div class="filesize hidden">
-
-                <p class="download-size">The file is approx. <span class="bytes">1 MB</span></p>
-
-                <div class="help" role="tooltip"><i class="cf-icon cf-icon-help-round"></i></div>
-                <span class="help-text"><%= explore_tooltips_filesize %></span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </section>
-
-        <section id="share" class="share">
-
-          <h2>Save & share your work</h2>
-
-          <div class="inner">
-
-            <label for="share_url">Save your filters, or share them with a link:</label>
-            <div class="text widget">
-              <input type="text" id="share_url" class="share_url share-url-width" name="share_url" value="" placeholder="Select filters above">
-            </div>
-
-            <div class="action">
-
-              <button type="button" class="btn share btn-bump-down" id="share-button" data-clipboard-target="share_url"><i class="cf-icon cf-icon-link"></i>Share</button>
-
-            </div>
-
-          </div>
-
-        </section>
-
-      </div>
-
-      <!-- download and share section -->
+      
 
     </form>
 
@@ -735,201 +844,10 @@
 
   <!-- /filters section -->
 
-  <!-- group section -->
-
-  <div id="summary" class="app-section">
-
-    <h2>Create a summary table</h2>
-
-    <div class="intro">
-      <div class="nlw">
-        <img src="static/img/icon_data_2x.png" width="30" height="30" alt="Data icon" class="data-minicon" />
-          <p>There are <em class="calculating"><img src="static/img/icon_spinner_2x.gif" alt="Loading icon" width="30" height="30" class="spinnergif"></em><strong class="count">many</strong> HMDA records from <strong class="years">2007 - 2012</strong> with the previously selected filters.</p>
-          <p class="not-quite">Not quite what you're looking for? You can also go back and <a href="#filters">modify your filters.</a></p>
-      </div>
-    </div>
-
-    <div class="instructions">
-      <p class="sub-header">Choose variables</p>
-      <p>Compare your filtered data by choosing up to three variables below.<button class="submit-btn" id="summary-submit">Submit</button></p>
-    </div>
-
-    <form id="summary-table-form">
-      
-      <div class="drop-downs">
-        <div class="variable">
-          
-          <select id="variable0" class="chzn-single" data-summary-table-input="both" data-placeholder="Select the first variable">
-            <option value></option>
-          </select>
-
-        </div>
-
-        <div class="variable with-reset-link">
-
-          <select id="variable1" class="chzn-single" data-summary-table-input="both" data-placeholder="Select the second variable">
-            <option value></option>
-          </select>
-          <a href="#" id="reset-variable1" class="hidden reset-field" data-summary-table-input="both">Remove</a>
-
-        </div>
-
-        <div class="variable with-reset-link">
-
-          <select id="variable2" class="chzn-single" data-summary-table-input="both" data-placeholder="Select the third variable">
-            <option value></option>
-          </select>
-          <a href="#" id="reset-variable2" class="hidden reset-field" data-summary-table-input="both">Remove</a>
-
-        </div>
-
-        <div class="calculate">
-          <select class="chzn-single" id="calculate-by" data-summary-table-input="select" data-placeholder="Select a variable">
-            <option value="count" class="indent">Number of records</option>
-            <option placeholder class="placeholder" disabled="disabled">Applicant Income</option>
-            <option value="min_applicant_income_000s" class="indent" data-verbose="Min applicant income">Min</option>
-            <option value="max_applicant_income_000s" class="indent" data-verbose="Max applicant income">Max</option>
-            <option value="avg_applicant_income_000s" class="indent" data-verbose="Average applicant income">Average</option>
-            <option placeholder class="placeholder" disabled="disabled">Loan Amount</option>
-            <option value="min_loan_amount_000s" class="indent" data-verbose="Min loan amount">Min</option>
-            <option value="max_loan_amount_000s" class="indent" data-verbose="Max loan amount">Max</option>
-            <option value="avg_loan_amount_000s" class="indent" data-verbose="Average loan amount">Average</option>
-            <option value="sum_loan_amount_000s" class="indent" data-verbose="Sum Total">Sum Total</option>
-          </select>
-        </div>
-
-      </div>
-      <div id="error"></div>
-      <div id="summary-wrapper">
-        <div id="summary-table-container">
-          <div id="summary-loading">
-              <p><img src="static/img/icon_spinner_2x.gif" alt="Loading icon" height="30" width="30" class="spinnergif"> This might take a few minutes... Please wait &mdash; we're figuring it out for you!</p>
-          </div>
-        </div>
-      </div>
-      
-
-      <div class="spinning"></div>
-
-      <!-- download and share section -->
-
-      <div class="download-share summary">
-
-        <section id="download" class="download">
-
-          <h2>Download raw data</h2>
-
-          <div class="inner">
-
-            <label for="format">File format:</label>
-            <div class="select widget">
-              <select name="format" id="raw-format">
-                <option value="csv">Spreadsheet (CSV)</option>
-                <option value="json">JSON</option>
-                <option value="jsonp">JSONP</option>
-                <option value="xml">XML</option>
-              </select>
-            </div>
-
-            <div class="radio widget raw-codes">
-              <label><input type="radio" name="codes" value="0" checked />Include labels</label>
-              <label><input type="radio" name="codes" value="1" />Include labels and codes</label>
-
-              <div class="help" role="tooltip"><i class="cf-icon cf-icon-help-round bump-up"></i></div>
-              <span class="help-text"><%= explore_tooltips_download_raw_data %></span>
-            </div>
-
-            <div class="msg mobile-warning">
-
-              <%= explore_mobile_warning %>
-
-            </div>
-
-            <div class="action">
-
-              <button type="submit" class="submit btn" id="download-raw-button"><i class="cf-icon cf-icon-download"></i>Download</button>
-
-              <div class="filesize hidden">
-
-                <p class="download-size">The file is approx. <span class="bytes">1 MB</span></p>
-
-                <div class="help" role="tooltip"><i class="cf-icon cf-icon-help-round"></i></div>
-                <span class="help-text"><%= explore_tooltips_filesize %></span>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </section>
-
-        <section id="download-summary" class="download-summary">
-
-          <h2>Download table</h2>
-
-          <div class="inner">
-
-            <label for="summary-table-format">Summary table file format:</label>
-            <div class="select widget">
-              <select name="summary-table-format" id="summary-table-format">
-                <option value="csv">Spreadsheet (CSV)</option>
-                <option value="json">JSON</option>
-                <option value="jsonp">JSONP</option>
-                <option value="xml">XML</option>
-              </select>
-            </div>
-
-            <div class="msg mobile-warning">
-
-              <%= explore_mobile_warning %>
-
-            </div>
-
-            <div class="action">
-
-              <button type="submit" class="submit btn btn-bump-down" id="download-summary-button"><i class="cf-icon cf-icon-download"></i>Download</button>
-
-            </div>
-
-          </div>
-
-        </section>
-
-        <section id="share" class="share">
-
-          <h2>Save & share your work</h2>
-
-          <div class="inner">
-
-            <label for="share_url-1">Save your filters, or share them<br>with a link:</label>
-            <div class="text widget">
-              <input type="text" class="share_url" id="share_url" name="share_url-1" value="" placeholder="Select filters above">
-            </div>
-
-            <div class="action">
-
-              <button href="#" type="button" class="btn share btn-bump-down" data-clipboard-target="share_url"><i class="cf-icon cf-icon-link"></i>Share</button>
-
-            </div>
-
-          </div>
-
-        </section>
-
-      </div>
-
-      <!-- download and share section -->
-        
-    </form>
-
-  </div>
-
-  <!-- /group section -->
-
   <%= footer %>
 
-  <script src="static/js/main.min.js"></script>
-  <script src="static/js/explore.min.js"></script>
+  <script src="static/js/main.min.js" type="text/javascript"></script>
+  <script src="static/js/explore.min.js" type="text/javascript"></script>
+  <script src="http://files.consumerfinance.gov.s3.amazonaws.com/hmda_explorer_assets/hmda.js" type="text/javascript"></script>
 </body>
 </html>

@@ -31,9 +31,30 @@
   }
 
   .title {
-    padding: 20px 0;
+    padding: 20px 0 20px 14px;
     &:hover {
       cursor: pointer;
+    }
+    h3 {
+    text-transform: uppercase;
+    color: @pacific;
+    display: inline-block;
+    padding-left: 15px;
+    font-size: 1em;
+    width: 150px;
+
+      i {
+        padding-right: 10px;
+        font-size: 1em;
+        position: relative;
+      }
+
+    }
+    .filter-active {
+      color: @pacific;
+      display: inline-block;
+      float: right;
+      right: 50px;
     }
   }
 
@@ -42,21 +63,6 @@
     .column( 11 );
   }
   
-  h3 {
-    text-transform: uppercase;
-    color: @pacific;
-    display: inline-block;
-    padding-left: 15px;
-    font-size: 1em;
-
-    i {
-      padding-right: 10px;
-      font-size: 1em;
-      position: relative;
-    }
-
-  }
-
   .desc {
     margin-left: 15px;
     margin-top: 15px;
@@ -186,11 +192,91 @@
 
   .next-steps {
     padding: 30px;
+    background: @light_field10;
   }
 
   select {
     width: 100%;
   }
+
+
+  /* TABS */
+  .tabs { 
+      margin: 0 0 1em;
+      
+      ul.cf-tablist {
+          outline: 0;
+          .clearfix();
+          border-bottom: 4px solid @black;
+          list-style-type: none;
+          margin: 0; 
+          padding: 0;
+
+          li {
+              
+              float: left;
+              margin: 0;
+              padding: 0;
+              
+              a {
+                  // font
+                  outline: 0;
+                  color: @black;
+                  cursor: pointer;
+                  text-decoration: none;
+                  // over-ride bottom borders from CFPB global styles.css 
+                  border-bottom: none;
+
+                  //tab color
+                  background-color: @light_field20;
+
+                  // position
+                  position: relative; 
+                  display: block; 
+                  top: 0;
+
+                  margin-right: .5em;
+                  padding: .5em 2em;
+
+                  &.active {
+                      background-color: @gold;
+                      color: @black;
+
+                      &:hover {
+                          background-color: @gold80;
+                          border: 0px solid @light_field20;
+                      }    
+                  }
+
+                  &:hover {
+                      background-color: @gold80;
+                      color: @black;
+
+                  }
+
+                  &:hover,
+                  &:focus {
+                      /* over-ride bottom borders from CFPB global styles.css */
+                      border-bottom: none;
+                  }
+              } //a
+          } //li
+      } //ul.cf-tablist
+
+
+      .cf-tabpanel {
+          background: none;
+          padding: 1em 0;
+
+          > div {
+              .clearfix();
+              min-height: 4em;
+          }
+          
+      } //cf-tabpanel
+
+  } //tabs
+  /* END TABS */
 
 }
 
@@ -250,6 +336,28 @@
 
 @media only screen and ( min-width: 768px ) {
 
+  .col3 {
+    .column(3);
+  }
+  .col4 {
+    .column(4);
+  }
+  .col5 {
+    .column(5);
+  }
+  .col6 {
+    .column(6);
+  }
+  .col7 {
+    .column(7);
+  }
+  .col8 {
+    .column(8);
+  }
+  .col9 {
+    .column(9);
+  }
+
   .filter {
 
     .intro {
@@ -264,10 +372,6 @@
       }
     }
 
-    h3 {
-      padding-left: 30px;
-    }
-
     .desc {
       display: inline-block;
       font-size: 1em;
@@ -275,11 +379,11 @@
       margin-top: 0;
     }
 
-    .next-steps {
-      a.action-arrow {
-        margin-top: 34px;
-      }
-    }
+    // .next-steps {
+    //   a.action-arrow {
+    //     margin-top: 34px;
+    //   }
+    // }
 
     .widget {
       width: 35%;
@@ -361,21 +465,35 @@
   }
 
   .filter.year {
+    padding: 30px;
+    .onboarding {
+      .column(6);
+    }
     .fields {
-      margin: 30px 0;
+      .column(6);
+      margin: 5px 0;
     }
     label {
-      width: 20%;
+      width: 80%;
+      display: block;
       text-align: left;
-      margin-left: 30px;
+      margin-left: 15px;
+    }
+    .widget {
+      width: 80%;
+    }
+    #get_started{
+      a {
+        display: inline-block;
+      }
     }
   }
 
   .widget {
-    width: 55%;
+    width: 95%;
    &.checkbox-inline {
       label {
-        width: 40%;
+        width: 75%;
         display: inline-block;
         margin-right: 19px;
         &:last-child {
@@ -405,7 +523,7 @@
 
   .filter.footer {
     .need-more {
-      width: 63%;
+      width: 100%;
     }
     .insight {
       float: right;

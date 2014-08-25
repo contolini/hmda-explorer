@@ -18,28 +18,25 @@ var PDP = (function ( pdp ) {
 
   // Act appropriately when suggested filter sets are changed.
   $('.field.suggested').on( 'change', _.debounce(function( ev ){
+    pdp.form.checkPreset();
 
-    var $field = $('.field.suggested select'),
-        preset = $field.val(),
-        parents;
-
-    ev.preventDefault();
-
-    // Log event to GA
-    track( 'Page Interaction', 'Filters', preset );
-
-    if ( preset === 'custom' ) {
-      return;
-    } else if ( preset === 'default' ) {
-      pdp.query.reset();
+    if( pdp.form.gottenStarted ){
+      pdp.form.handlePreset();
     } else {
-      pdp.query.reset( preset );
+      pdp.form.resetFields();
+      pdp.form.setFields();
     }
 
-    pdp.form.resetFields();
-    pdp.form.setFields();
-    pdp.form.showSections();
-    pdp.form.updateShareLink();
+  }, 100));
+
+  $('#get_started_button').on( 'click', _.debounce(function( ev ){
+    ev.preventDefault();
+
+    if ( !pdp.form.gottenStarted ){
+      pdp.form.handlePreset();
+      pdp.form.startedButtonChange();
+      pdp.form.gottenStarted = true;
+    }
 
   }, 100));
 
@@ -65,6 +62,38 @@ var PDP = (function ( pdp ) {
     }
 
   }, 300 ));
+
+  // When "Raw Data" is clicked, show download module
+  $('#view-raw-data-button').on( 'click', function( ev ){
+    ev.preventDefault();
+    pdp.form.showField('.download-share');
+    pdp.form.hideField('#summary');
+    pdp.form.hideSections();
+    //pdp.form.hideSections();
+    //pdp.form.hideField('#summary'); // Do this after you disable the second 'page'
+    pdp.app.changeSection.bind( pdp.app );
+  });
+
+  $('#summary-table-button').on( 'click', function( ev ){
+    //var targetSection = $( this ).attr('href').replace('#', '');
+
+    ev.preventDefault();
+    pdp.form.showField('#summary');
+    pdp.form.hideField('.download-share');
+    pdp.form.hideSections();
+    //pdp.observer.emitEvent( 'navigation:clicked', [ targetSection ] );
+    //pdp.app.changeSection.bind( pdp.app );
+  });
+
+  // Action to show filters to narrow down data - in process, hide the download button.
+  $('.show-filters').on( 'click', function( ev ){
+    ev.preventDefault();
+    if( pdp.form.filtersShown ){
+      pdp.form.hideSections();
+    } else {
+      pdp.form.showSections();
+    }
+  });
 
   // Add a new location section whenever the `#add-state` link is clicked.
   $('a#add-state').on( 'click', function( ev ){
@@ -96,10 +125,17 @@ var PDP = (function ( pdp ) {
   $('form#explore').on( 'submit', function( ev ){
     var format = $('#format').val(),
         showCodes = !!parseInt( $('.codes input[type=radio]:checked').val(), 10 ),
-        url = pdp.query.generateApiUrl( format, showCodes ) + '&$limit=0';
+        url = pdp.query.generateApiUrl( format, showCodes ) + '&$limit=0',     
+        isStaticFileAvailable = pdp.form.checkStatic();
+
+    if( isStaticFileAvailable && format === 'csv' ){
+      url = isStaticFileAvailable + '.zip';
+    }
+
+    console.log( 'This is the URL being passed to app redirect: ', url );
 
     // Log event to GA
-    track( 'downloads', 'HMDA raw data', 'filter-page:' + url );
+    // track( 'downloads', 'HMDA raw data', 'filter-page:' + url );
 
     ev.preventDefault();
     pdp.app.redirect( url );
@@ -111,11 +147,17 @@ var PDP = (function ( pdp ) {
 
     var format = $('#raw-format').val(),
         showCodes = !!parseInt( $('.raw-codes input[type=radio]:checked').val(), 10 ),
-        url = pdp.query.generateApiUrl( format, showCodes ) + '&$limit=0';
+        url = pdp.query.generateApiUrl( format, showCodes ) + '&$limit=0',
+        isStaticFileAvailable = pdp.form.checkStatic();
+
+    if( isStaticFileAvailable ){
+      // If a static file is available, serve it via its URL - hard-coded as a zip for compression
+      url = isStaticFileAvailable + '.zip';
+    }
 
     // Log event to GA
-    track( 'downloads', 'HMDA raw data', 'summary-table-page:' + url );
-
+    //track( 'downloads', 'HMDA raw data', 'summary-table-page:' + url );
+    console.log( 'This is the URL being passed to app redirect: ', url );
     ev.preventDefault();
     pdp.app.redirect( url );
 
@@ -266,6 +308,114 @@ var PDP = (function ( pdp ) {
   // ----------------
   $(function() {
     pdp.observer.emitEvent('dom:loaded');
+
+    // Load the tabs
+      $.fn.cfTabs = function() {
+
+        var tabList = this.find('> ul');
+        var tabPanel = this.find('> div');
+
+        //console.log(tabList);
+
+        // Hide all the inactive tab panels. They are not hidden by CSS for 508 compliance
+        tabPanel.hide().addClass('cf-tabpanel');
+        tabPanel.first().show().addClass('active');
+
+        // Set the first tab to dark green
+        tabList.addClass('cf-tablist');
+        tabList.find('a').first().addClass('active');
+        
+        //set the default aria attributes to the tab list
+        tabList.attr('role', 'tablist');
+        tabList.find('li').attr('role', 'presentation');
+        tabList.find('a').attr('role', 'tab').attr('aria-selected', 'false').attr('aria-expanded', 'false').attr('tabindex', '-1');
+        tabList.find('a').first().attr('aria-selected', 'true').attr('aria-expanded', 'true').attr('tabindex', '0');
+
+        // add the default aria attributes to the tab panel
+        tabPanel.attr('role', 'tabpanel').attr('aria-hidden', 'true').attr('tabindex', '-1');
+        tabPanel.first().attr('aria-hidden', 'false').attr('tabindex', '0');
+
+        // create IDs for each anchor for the area-labelledby
+        tabList.find('a').each(function() {
+          var tabID = $( this ).attr('href').substring(1);
+
+          //console.log(tabID);
+          $(this).attr('id','tablist-' + tabID).attr('aria-controls', tabID);
+        });
+
+        tabPanel.each(function() {
+          //console.log( index + ': ' + $( this ).attr('href').substring(1) );
+          var tabID = 'tablist-' + $( this ).attr('id');
+          //console.log(tabID);
+          $(this).attr('aria-labelledby',tabID);
+        });
+
+
+        // Attach a click handler to all tab anchor elements
+        this.find('> ul a').click(function(event) {
+          // prevent the anchor link from modifing the url. We don't want the brower scrolling down to the anchor.
+          event.preventDefault();
+          // The entire tabset, the parent of the clicked tab
+          var $thisTabset = $(this).closest('.tabs');
+
+          //console.log('$thisTabset:');
+          //console.log($thisTabset);
+
+          var thisTabID = $(this).attr('href');
+
+          //console.log('thisTabID:');
+          //console.log(thisTabID);
+
+          //var $thisTabContent = $thisTabset.find(thisTabID);
+
+          //console.log('$thisTabContent:');
+          //console.log($thisTabContent);
+
+          // remove all the active classes on the tabs and panels
+          $thisTabset.find('.active').removeClass('active');
+          // set the aria roles to the default settings for all
+          $thisTabset.find('> ul > li > a').attr('aria-selected', 'false').attr('aria-expanded', 'false').attr('tabindex', '-1');
+          // hide all the tab panels
+          $thisTabset.find('.cf-tabpanel').hide().attr('aria-hidden', 'true').attr('tabindex', '-1');
+          
+          
+          // show the panel
+          $(thisTabID).addClass('active').show().attr('aria-hidden', 'false').attr('tabindex', '0');
+          //highlight the clicked tab
+          $(this).addClass('active').attr('aria-selected', 'true').attr('aria-expanded', 'true').attr('tabindex', '0');
+          $(this).focus();
+        });
+
+        //set keydown events on tabList item for navigating tabs
+        $(tabList).delegate('a', 'keydown',
+          function (e) {
+            switch (e.which) {
+              case 37: case 38:
+                if ($(this).parent().prev().length!==0) {
+                  $(this).parent().prev().find('>a').click();
+                } else {
+                  $(tabsList).find('li:last>a').click();
+                }
+                break;
+              case 39: case 40:
+                if ($(this).parent().next().length!==0) {
+                  $(this).parent().next().find('>a').click();
+                } else {
+                  $(tabsList).find('li:first>a').click();
+                }
+                break;
+            }
+          }
+        );
+
+
+      };
+      // END TABS
+
+      // auto-init
+      $(function(){
+        $('.tabs').cfTabs();
+      });
   });
 
   return pdp;

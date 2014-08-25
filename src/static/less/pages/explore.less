@@ -99,6 +99,11 @@
     margin-left: 10px;
   }
 
+  .top-count {
+    padding-top: 20px;
+    text-align: center;
+  }
+
   // File size estimation
   .download-size {
     font-style: italic;
@@ -123,9 +128,7 @@
   .invisible();
   
   h2 {
-    margin-top: 40px;
     padding-bottom: 5px;
-    .avenir-next-demi;
     font-size: 1.5em;
   }
 
@@ -174,6 +177,11 @@
     border: 0;
   }
 
+  h2 {
+    padding-top: 20px;
+    .avenir-next-demi;
+  }
+
   .inner {
     background-color: @light_field10;
     padding: 25px 30px;
@@ -197,6 +205,7 @@
 
   .share_url {
     width: 100%;
+    display:inline;
   }
 
   .help {
@@ -383,9 +392,18 @@
   .download-share.no-summary {
 
     section {
-      .column( 6 );
+      //.column( 12 );
       .inner {
-        min-height: 275px;
+        //min-height: 275px;
+      }
+      .fivecol { 
+        .column( 5 );
+      }
+      .fourcol {
+        .column( 4 );
+      }
+      .threecol {
+        .column( 3 );
       }
     }
 
@@ -394,9 +412,18 @@
   .download-share.summary {
 
     section {
-      .column( 4 );
+      //.column( 12 );
       .inner {
-        min-height: 290px;
+        //min-height: 290px;
+      }
+      .fivecol { 
+        .column( 5 );
+      }
+      .fourcol {
+        .column( 4 );
+      }
+      .threecol {
+        .column( 3 );
       }
     }
 
