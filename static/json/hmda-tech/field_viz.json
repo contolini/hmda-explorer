@@ -1,0 +1,1082 @@
+{
+    "src": "",
+    "year": "2015",
+    "metadata": {
+        "financialInstitutionName": {
+            "label": "Financial Institution Name",
+            "description": "Enter the name of the financial institution that is submitting the HMDA data."
+        },
+        "calendarYear": {
+            "label": "Calendar Year",
+            "description": "Enter the calendar year of the data contained in the loan/application register using numerals in the form YYYY."
+        },
+        "calendarQuarter": {
+            "label": "Calendar Quarter",
+            "description": "Indicate the annual submission by entering the Code below.",
+            "codes": [
+                {
+                    "id": "4",
+                    "description": "Annual submissions for covered loans and applications with respect to which final action was taken during the period between January 1st (01/01) and December 31st (12/31)"
+                }
+            ]
+        },
+        "contactName": {
+            "label": "Contact Person’s Name",
+            "description": "Enter the first and last name of the person who may be contacted with questions about your institution’s submission."
+        },
+        "contactTelephoneNumber": {
+            "label": "Contact Person’s Telephone Number",
+            "description": "Enter the phone number of the person who may be contacted with questions about your institution’s submission."
+        },
+        "contactEmailAddress": {
+            "label": "Contact Person’s E-mail Address",
+            "description": "Enter the e-mail address of the person who may be contacted with questions about your institution’s submission."
+        },
+        "contactStreetAddress": {
+            "label": "Contact Person’s Office Street Address",
+            "description": "Enter the street address.  This will be reported as one (1) data field.  Details regarding recommended formatting of the street address are described under “Delivery Address Line” found in Publication 28, Sub-Section 23 Delivery Address Line.  Address components include, as applicable, the following individual items:"
+        },
+        "contactOfficeCity": {
+            "label": "Contact Person’s Office City",
+            "description": "Enter the city. This will be reported as one (1) data field.  Details regarding recommended formatting of the city are found in Publication 28, Sub-Section 22 Last Line."
+        },
+        "contactOfficeState": {
+            "label": "Contact Person’s Office State",
+            "description": "Enter the state. This will be reported as one (1) data field.  Details regarding recommended formatting of the state are found in Publication 28, Sub-Section 22 Last Line."
+        },
+        "contactOfficeZip": {
+            "label": "Contact Person’s Office ZIP Code",
+            "description": "Enter the ZIP code. This will be reported as one (1) data field.  Details regarding recommended formatting of the ZIP code are found in Publication 28, Sub-Section 22 Last Line."
+        },
+        "federalAgency": {
+            "label": "Federal Agency",
+            "description": "Indicate your financial institution’s appropriate Federal Agency by entering the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Office of the Comptroller of the Currency (OCC)"
+                },
+                {
+                    "id": "2",
+                    "description": "Federal Reserve System (FRS)"
+                },
+                {
+                    "id": "3",
+                    "description": "Federal Deposit Insurance Corporation (FDIC)"
+                },
+                {
+                    "id": "5",
+                    "description": "National Credit Union Administration (NCUA)"
+                },
+                {
+                    "id": "7",
+                    "description": "United States Department of Housing and Urban Development (HUD)"
+                },
+                {
+                    "id": "9",
+                    "description": "Consumer Financial Protection Bureau (CFPB)"
+                }
+            ]
+        },
+        "numberOfEntries": {
+            "label": "Total Number of Entries Contained in Submission",
+            "description": "Enter the total number of covered loans and applications submitted in numeral form."
+        },
+        "federalTaxpayerIdentifcationNumber": {
+            "label": "Federal Taxpayer Identification Number",
+            "description": "Enter your financial institution’s Federal Taxpayer Identification Number."
+        },
+        "legalEntityIdentifier": {
+            "label": "Legal Entity Identifier (LEI)",
+            "description": "Enter your financial institution’s LEI."
+        }
+    },
+    "data": {
+        "universalLoanIdentifier": {
+            "label": "Universal Loan Identifier (ULI)",
+            "description": "Enter the ULI assigned to the covered loan or application."
+        },
+        "applicationDate": {
+            "label": "Application Date",
+            "description": "Enter the date the application was received as defined in § 1003.2(b) or the date shown on the application form by year, month, and day, using numerals in the form YYYYMMDD."
+        },
+        "loanType": {
+            "label": "Loan Type",
+            "description": "Indicate the type of covered loan or application by entering the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Conventional (not insured or guaranteed by FHA, VA, RHS, or FSA)"
+                },
+                {
+                    "id": "2",
+                    "description": "Federal Housing Administration insured (FHA)"
+                },
+                {
+                    "id": "3",
+                    "description": "Veterans Administration guaranteed (VA)"
+                },
+                {
+                    "id": "4",
+                    "description": "USDA Rural Housing Service or the Farm Service Agency guaranteed (RHS or FSA)"
+                }
+            ]
+        },
+        "loanPurpose": {
+            "label": "Loan Purpose",
+            "description": "Indicate the purpose of the covered loan or application by entering the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Home purchase"
+                },
+                {
+                    "id": "2",
+                    "description": "Home improvement"
+                },
+                {
+                    "id": "31",
+                    "description": "Refinancing"
+                },
+                {
+                    "id": "32",
+                    "description": "Cash-out refinancing"
+                },
+                {
+                    "id": "4",
+                    "description": "Other purpose"
+                }
+            ]
+        },
+        "preapproval": {
+            "label": "Preapproval",
+            "description": "Indicate whether the covered loan or application involved a request for preapproval for a home purchase loan under a preapproval program as defined in § 1003.2(b)(2) by entering the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Preapproval requested"
+                },
+                {
+                    "id": "2",
+                    "description": "Preapproval not requested"
+                }
+            ]
+        },
+        "constructionMethod": {
+            "label": "Construction Method",
+            "description": "Indicate the construction method for the dwelling by entering the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Site-built"
+                },
+                {
+                    "id": "2",
+                    "description": "Manufactured home"
+                }
+            ]
+        },
+        "occupancyType": {
+            "label": "Occupancy Type",
+            "description": "Indicate the occupancy type by entering the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Principal residence"
+                },
+                {
+                    "id": "2",
+                    "description": "Second residence "
+                },
+                {
+                    "id": "3",
+                    "description": "Investment property"
+                }
+            ]
+        },
+        "loanAmount": {
+            "label": "Loan Amount",
+            "description": "Enter the amount, in dollars, of the covered loan or the amount applied for, as applicable."
+        },
+        "actionTaken": {
+            "label": "Action Taken",
+            "description": "Indicate the type of action taken on the covered loan or application by entering the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Loan originated"
+                },
+                {
+                    "id": "2",
+                    "description": "Application approved but not accepted"
+                },
+                {
+                    "id": "3",
+                    "description": "Application denied"
+                },
+                {
+                    "id": "4",
+                    "description": "Application withdrawn by applicant"
+                },
+                {
+                    "id": "5",
+                    "description": "File closed for incompleteness"
+                },
+                {
+                    "id": "6",
+                    "description": "Purchased loan"
+                },
+                {
+                    "id": "7",
+                    "description": "Preapproval request denied"
+                },
+                {
+                    "id": "8",
+                    "description": "Preapproval request approved but not accepted"
+                }
+            ]
+        },
+        "actionTakenDate": {
+            "label": "Action Taken Date",
+            "description": "Enter the date of action taken by year, month, and day, using numerals in the form YYYYMMDD."
+        },
+        "streetAddress": {
+            "label": "Street Address",
+            "description": "Enter the street address.  This will be reported as one (1) data field.  Details regarding recommended formatting of the street address are described under “Delivery Address Line” found in Publication 28, Sub-Section 23 Delivery Address Line.  Address components include, as applicable, the following individual items:"
+        },
+        "city": {
+            "label": "City",
+            "description": "Enter the city. This will be reported as one (1) data field.  Details regarding recommended formatting of the city are found in Publication 28, Sub-Section 22 Last Line."
+        },
+        "state": {
+            "label": "State",
+            "description": "Enter the state. This will be reported as one (1) data field.  Details regarding recommended formatting of the state are found in Publication 28, Sub-Section 22 Last Line."
+        },
+        "zip": {
+            "label": "ZIP Code",
+            "description": "Enter the ZIP code. This will be reported as one (1) data field.  Details regarding recommended formatting of the ZIP code are found in Publication 28, Sub-Section 22 Last Line."
+        },
+        "county": {
+            "label": "County",
+            "description": "Enter the five-digit Federal Information Processing Standards (FIPS) numerical code for the state and county. These codes are available from the appropriate Federal agency to which your institution reports data."
+        },
+        "censusTract": {
+            "label": "Census Tract",
+            "description": "Enter the 11 digit census tract number as defined by the U.S. Census Bureau.  Do not use decimals. Use the boundaries and codes that were in effect on January 1 of the calendar year for which your institution is reporting."
+        },
+        "applicantEthnicity": {
+            "label": "Ethnicity of Applicant or Borrower",
+            "description": "Indicate the ethnicity of the applicant or borrower, and of any co-applicant or co-borrower, if applicable, by selecting up to five (5) of the applicable Code(s) from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Hispanic or Latino"
+                },
+                {
+                    "id": "11",
+                    "description": "Mexican"
+                },
+                {
+                    "id": "12",
+                    "description": "Puerto Rican"
+                },
+                {
+                    "id": "13",
+                    "description": "Cuban"
+                },
+                {
+                    "id": "14",
+                    "description": "Other Hispanic or Latino",
+                    "conditional": {
+                        "id": "Conditional Free Form Text Field for Code 14: Other Hispanic or Latino",
+                        "description": "This field will only contain a value if Code 14 is selected. Otherwise, leave it blank.",
+                        "limit": "50"
+                    }
+                },
+                {
+                    "id": "2",
+                    "description": "Not Hispanic or Latino"
+                },
+                {
+                    "id": "3",
+                    "description": "Information not provided by applicant in mail, internet, or telephone application"
+                },
+                {
+                    "id": "4",
+                    "description": "Not applicable"
+                },
+                {
+                    "id": "5",
+                    "description": "No co-applicant"
+                }
+            ]
+        },
+        "applicantEthnicityBasis": {
+            "label": "Ethnicity Collected on the Basis of Visual Observation or Surname",
+            "description": "Indicate whether the ethnicity of the applicant or borrower, and of any co-applicant or co-borrower, if applicable, was collected on the basis of visual observation or surname by selecting from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Collected on the basis of visual observation or surname"
+                },
+                {
+                    "id": "2",
+                    "description": "Not collected on the basis of visual observation or surname"
+                },
+                {
+                    "id": "3",
+                    "description": "Not applicable"
+                },
+                {
+                    "id": "4",
+                    "description": "No co-applicant"
+                }
+            ]
+        },
+        "applicantRace": {
+            "label": "Race of Applicant or Borrower",
+            "description": "Indicate the race of the applicant or borrower, and of any co-applicant or co-borrower, if applicable, by selecting up to five (5) of the applicable Code(s) from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "American Indian or Alaska Native",
+                    "conditional": {
+                        "id": "Conditional Free Form Text Field for Code 1: American Indian or Alaska Native.",
+                        "description": "This field will only contain a value if Code 1 is selected. Otherwise, leave it blank.",
+                        "limit": "50"
+                    }
+                },
+                {
+                    "id": "2",
+                    "description": "Asian"
+                },
+                {
+                    "id": "21",
+                    "description": "Asian Indian"
+                },
+                {
+                    "id": "22",
+                    "description": "Chinese"
+                },
+                {
+                    "id": "23",
+                    "description": "Filipino"
+                },
+                {
+                    "id": "24",
+                    "description": "Japanese"
+                },
+                {
+                    "id": "25",
+                    "description": "Korean"
+                },
+                {
+                    "id": "26",
+                    "description": "Vietnamese"
+                },
+                {
+                    "id": "27",
+                    "description": "Other Asian",
+                    "conditional": {
+                        "id": "Conditional Free Form Text Field for Code 27: Other Asian",
+                        "description": "This field will only contain a value if Code 27 is selected. Otherwise, leave it blank.",
+                        "limit": "50"
+                    }
+                },
+                {
+                    "id": "3",
+                    "description": "Black or African American"
+                },
+                {
+                    "id": "4",
+                    "description": "Native Hawaiian or Other Pacific Islander"
+                },
+                {
+                    "id": "41",
+                    "description": "Native Hawaiian"
+                },
+                {
+                    "id": "42",
+                    "description": "Guamanian or Chamorro"
+                },
+                {
+                    "id": "43",
+                    "description": "Samoan"
+                },
+                {
+                    "id": "44",
+                    "description": "Other Pacific Islander",
+                    "conditional": {
+                        "id": "Conditional Free Form Text Field for Code 44: Other Pacific Islander",
+                        "description": "This field will only contain a value if Code 44 is selected. Otherwise, leave it blank.",
+                        "limit": "50"
+                    }
+                },
+                {
+                    "id": "5",
+                    "description": "White"
+                },
+                {
+                    "id": "6",
+                    "description": "Information not provided by applicant in mail, internet, or telephone application"
+                },
+                {
+                    "id": "7",
+                    "description": "Not applicable"
+                },
+                {
+                    "id": "8",
+                    "description": "No co-applicant"
+                }
+            ]
+        },
+        "applicantRaceBasis": {
+            "label": "Race Collected on the Basis of Visual Observation or Surname",
+            "description": "Indicate whether the race of the applicant or borrower, and of any co-applicant or co-borrower, if applicable, was collected on the basis of visual observation or surname by selecting from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Collected on the basis of visual observation or surname"
+                },
+                {
+                    "id": "2",
+                    "description": "Not collected on the basis of visual observation or surname "
+                },
+                {
+                    "id": "3",
+                    "description": "Not applicable"
+                },
+                {
+                    "id": "4",
+                    "description": "No co-applicant"
+                }
+            ]
+        },
+        "sexOfApplicant": {
+            "label": "Sex of Applicant or Borrower",
+            "description": "Indicate the sex of the applicant or borrower, and of any co-applicant or co-borrower, if applicable, by selecting the appropriate Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Male"
+                },
+                {
+                    "id": "2",
+                    "description": "Female"
+                },
+                {
+                    "id": "3",
+                    "description": "Information not provided by applicant in mail, internet, or telephone application"
+                },
+                {
+                    "id": "4",
+                    "description": "Not applicable"
+                },
+                {
+                    "id": "5",
+                    "description": "No co-applicant"
+                }
+            ]
+        },
+        "applicantSexBasis": {
+            "label": "Sex Collected on the Basis of Visual Observation or Surname",
+            "description": "Indicate whether the sex of the applicant or borrower, and of any co-applicant or co-borrower, if applicable, was collected on the basis of visual observation or surname by selecting from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Collected on the basis of visual observation or surname"
+                },
+                {
+                    "id": "2",
+                    "description": "Not collected on the basis of visual observation or surname "
+                },
+                {
+                    "id": "3",
+                    "description": "Not applicable"
+                },
+                {
+                    "id": "4",
+                    "description": "No co-applicant"
+                }
+            ]
+        },
+        "ageOfApplicant": {
+            "label": "Age of Applicant or Borrower",
+            "description": "Enter the age in numeral form, in years, of the applicant or borrower, and of any co-applicant or co-borrower, if applicable. Age is calculated, as of the application date, as the number of whole years derived from the date of birth shown on the application form. Or, use the applicable Code from the following:",
+            "codes": [
+                {
+                    "description": "Age"
+                },
+                {
+                    "id": "8888",
+                    "description": "Not applicable"
+                },
+                {
+                    "id": "9999",
+                    "description": "No co-applicant"
+                }
+            ]
+        },
+        "income": {
+            "label": "Income",
+            "description": "Enter the amount, in dollars, of the gross annual income that your institution relied on in making the credit decision, or if a credit decision was not made, the gross annual income relied on in processing the application.  Round all dollar amounts to the nearest thousand (round $500 up to the next $1,000)."
+        },
+        "typeOfPurchaser": {
+            "label": "Type of Purchaser",
+            "description": "Indicate whether a covered loan that your institution originated or purchased was sold to a secondary market entity within the same calendar year as origination or purchase by using the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "0",
+                    "description": "Not applicable"
+                },
+                {
+                    "id": "1",
+                    "description": "Fannie Mae"
+                },
+                {
+                    "id": "2",
+                    "description": "Ginnie Mae"
+                },
+                {
+                    "id": "3",
+                    "description": "Freddie Mac"
+                },
+                {
+                    "id": "4",
+                    "description": "Farmer Mac"
+                },
+                {
+                    "id": "5",
+                    "description": "Private securitizer"
+                },
+                {
+                    "id": "6",
+                    "description": "Commercial bank, savings bank, or savings association"
+                },
+                {
+                    "id": "7",
+                    "description": "Credit union, mortgage company, or finance company"
+                },
+                {
+                    "id": "8",
+                    "description": "Affiliate institution"
+                },
+                {
+                    "id": "9",
+                    "description": "Other type of purchaser"
+                },
+                {
+                    "id": "10",
+                    "description": "Life insurance company"
+                }
+            ]
+        },
+        "rateSpread": {
+            "label": "Rate Spread",
+            "description": "Enter the difference between the covered loan’s or application’s Annual Percentage Rate (APR) and the applicable Average Prime Offer Rate (APOR) as published on the FFEC website."
+        },
+        "hoepaStatus": {
+            "label": "HOEPA Status",
+            "description": "Indicate whether the covered loan that your institution originated or purchased is a high-cost mortgage as defined by the Home Ownership and Equity Protection Act of 1994 (HOEPA) using the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "High-cost mortgage"
+                },
+                {
+                    "id": "2",
+                    "description": "Not a high-cost mortgage"
+                },
+                {
+                    "id": "3",
+                    "description": "Not applicable"
+                }
+            ]
+        },
+        "lienStatus": {
+            "label": "Lien Status",
+            "description": "Indicate the lien status for covered loans that your institution originates or purchases, as well as for applications that do not result in an origination using the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Secured by a first lien"
+                },
+                {
+                    "id": "2",
+                    "description": "Secured by a subordinate lien"
+                }
+            ]
+        },
+        "applicantCreditScore": {
+            "label": "Credit Score of Applicant or Borrower",
+            "description": "Enter the credit score or scores, in numeral form, relied on in making the credit decision for the applicant or borrower, and of any co-applicant or co-borrower, if applicable. If Regulation C requires your institution to report a single score that corresponds to multiple applicants or borrowers, report the score in the applicant field.  Or, use the applicable Code from the following:",
+            "codes": [
+                {
+                    "description": "Credit Score"
+                },
+                {
+                    "id": "8888",
+                    "description": "Not applicable"
+                },
+                {
+                    "id": "9999",
+                    "description": "No co-applicant"
+                }
+            ]
+        },
+        "applicantScoreModel": {
+            "label": "Name and Version of Credit Scoring Model",
+            "description": "Indicate the name and version of the credit scoring model used to generate the credit score relied on in making the credit decision by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Equifax Beacon 5.0"
+                },
+                {
+                    "id": "2",
+                    "description": "Experian Fair Isaac"
+                },
+                {
+                    "id": "3",
+                    "description": "FICO Risk Score Classic 04"
+                },
+                {
+                    "id": "4",
+                    "description": "FICO Risk Score Classic 98"
+                },
+                {
+                    "id": "5",
+                    "description": "VantageScore 2.0"
+                },
+                {
+                    "id": "6",
+                    "description": "VantageScore 3.0"
+                },
+                {
+                    "id": "7",
+                    "description": "More than one credit scoring model"
+                },
+                {
+                    "id": "8",
+                    "description": "Other credit scoring model",
+                    "conditional": {
+                        "id": "Conditional Free Form Text Field for Code 8: Other credit scoring model",
+                        "description": "Other credit scoring model. This field will only contain a value if Code 8 is selected. Otherwise, leave it blank.",
+                        "limit": "50"
+                    }
+                },
+                {
+                    "id": "9",
+                    "description": "Not applicable"
+                },
+                {
+                    "id": "10",
+                    "description": "No co-applicant"
+                }
+            ]
+        },
+        "denialReason": {
+            "label": "Reason for Denial",
+            "description": "Indicate the principal reason or reasons for denial by selecting up to four (4) applicable Codes from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Debt-to-income ratio"
+                },
+                {
+                    "id": "2",
+                    "description": "Employment history"
+                },
+                {
+                    "id": "3",
+                    "description": "Credit history"
+                },
+                {
+                    "id": "4",
+                    "description": "Collateral"
+                },
+                {
+                    "id": "5",
+                    "description": "Insufficient cash (downpayment, closing costs)"
+                },
+                {
+                    "id": "6",
+                    "description": "Unverifiable information"
+                },
+                {
+                    "id": "7",
+                    "description": "Credit application incomplete"
+                },
+                {
+                    "id": "8",
+                    "description": "Mortgage insurance denied"
+                },
+                {
+                    "id": "9",
+                    "description": "Other",
+                    "conditional": {
+                        "id": "Conditional Free Form Text Field for Code 9: Other",
+                        "description": "This field will only contain a value if Code 9 is selected. Otherwise, leave it blank.",
+                        "limit": "50"
+                    }
+                },
+                {
+                    "id": "10",
+                    "description": "Not applicable"
+                }
+            ]
+        },
+        "totalLoanCosts": {
+            "label": "Total Loan Costs",
+            "description": "Enter, in dollars, the amount of total loan costs."
+        },
+        "totalPointsAndFees": {
+            "label": "Total Points and Fees",
+            "description": "Enter, in dollars, the total points and fees charged in connection with the covered loan."
+        },
+        "originationCharges": {
+            "label": "Origination Charges",
+            "description": "Enter, in dollars, the total of all itemized amounts that are designated borrower-paid at or before closing."
+        },
+        "discountPoints": {
+            "label": "Discount Points",
+            "description": "Enter, in dollars, the points paid to the creditor to reduce the interest rate."
+        },
+        "lenderCredits": {
+            "label": "Lender Credits",
+            "description": "Enter, in dollars, the total amount of lender credits."
+        },
+        "interestRate": {
+            "label": "Interest Rate",
+            "description": "Enter the interest rate in decimal format."
+        },
+        "prepaymentPenaltyTerm": {
+            "label": "Prepayment Penalty Term",
+            "description": "Enter the term in numeral form, in months, of any prepayment penalty applicable to the covered loan or application."
+        },
+        "dtiRatio": {
+            "label": "Debt-to-Income Ratio",
+            "description": "Enter the ratio of the applicant’s or borrower’s total monthly debt to the total monthly income relied on in making the credit decision."
+        },
+        "cltvRatio": {
+            "label": "Combined Loan-to-Value Ratio",
+            "description": "Enter the ratio of the total amount of debt secured by the property to the value of the property relied on in make the credit decision."
+        },
+        "loanTerm": {
+            "label": "Loan Term",
+            "description": "Enter the scheduled loan term in numeral form, in months, after which the legal obligation will mature or terminate or would have matured or terminated."
+        },
+        "introductoryRatePeriod": {
+            "label": "Introductory Rate Period",
+            "description": "Enter in numeral form, the number of months, or proposed number of months in the case of an application, until the first date the interest rate may change after closing or account opening."
+        },
+        "balloonPayment": {
+            "label": "Balloon Payment",
+            "description": "Indicate if the covered loan or application requires a payment that is more than two times a regular periodic payment by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Balloon payment"
+                },
+                {
+                    "id": "2",
+                    "description": "No balloon payment"
+                }
+            ]
+        },
+        "interestOnlyPayments": {
+            "label": "Interest-Only Payments",
+            "description": "Indicate if the covered loan or application would permit one or more periodic payments to be applied solely to accrued interest and not to principal by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Interest-only payments"
+                },
+                {
+                    "id": "2",
+                    "description": "No interest-only payments"
+                }
+            ]
+        },
+        "negativeAmortization": {
+            "label": "Negative Amortization",
+            "description": "Indicate if the covered loan or application would permit a minimum periodic payment that covers only a portion of the accrued interest, resulting in an increase in the principal balance under the terms of the legal obligation by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Negative amortization"
+                },
+                {
+                    "id": "2",
+                    "description": "No negative amortization"
+                }
+            ]
+        },
+        "otherNonAmortizingFeatures": {
+            "label": "Other Non-amortizing Features",
+            "description": "Indicate if the covered loan or application includes contractual terms other than contractual terms described in § 1003.4(a)(27)(i), (ii), and (iii) that would allow for non-amortizing payments during the loan term by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Other non-fully amortizing features"
+                },
+                {
+                    "id": "2",
+                    "description": "No other non-fully amortizing features"
+                }
+            ]
+        },
+        "propertyValue": {
+            "label": "Property Value",
+            "description": "Enter the value of the property, in dollars, securing the covered loan or, in the case of an application, proposed to secure the covered loan relied on in making the credit decision."
+        },
+        "manufacturedPropertyType": {
+            "label": "Manufactured Home Secured Property Type",
+            "description": "Indicate whether the covered loan or application is, or would have been, secured by a manufactured home and land or by a manufactured home and not land, by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Manufactured home and land"
+                },
+                {
+                    "id": "2",
+                    "description": "Manufactured home and not land"
+                },
+                {
+                    "id": "3",
+                    "description": "Not applicable"
+                }
+            ]
+        },
+        "manufacturedLandInterest": {
+            "label": "Manufactured Home Land Property Interest",
+            "description": "Indicate the applicant’s or borrower’s land property interest in the land on which a manufactured home is or will be located by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Direct ownership"
+                },
+                {
+                    "id": "2",
+                    "description": "Indirect ownership"
+                },
+                {
+                    "id": "3",
+                    "description": "Paid leasehold"
+                },
+                {
+                    "id": "4",
+                    "description": "Unpaid leasehold"
+                },
+                {
+                    "id": "5",
+                    "description": "Not applicable"
+                }
+            ]
+        },
+        "dwellingUnits": {
+            "label": "Total Units",
+            "description": "Enter in numeral form, the number of individual dwelling units related to the property securing the covered loan or, in the case of an application, proposed to secure the covered loan."
+        },
+        "multifamilyAffordableUnits": {
+            "label": "Multifamily Affordable Units",
+            "description": "Enter, in numeral form, the number of individual dwelling units related to the property securing the covered loan or, in the case of an application, proposed to secure the covered loan are income-restricted pursuant to Federal, State, or local affordable housing programs."
+        },
+        "applicationChannel": {
+            "label": "Submission of Application",
+            "description": "Indicate whether the applicant or borrower submitted the application directly to your institution by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Submitted directly to your institution"
+                },
+                {
+                    "id": "2",
+                    "description": "Not submitted directly to your institution"
+                },
+                {
+                    "id": "3",
+                    "description": "Not applicable"
+                }
+            ]
+        },
+        "initiallyPayableToYourInstitution": {
+            "label": "Initially Payable to Your Institution",
+            "description": "Indicate whether the covered loan was, or whether an application would have been, initially payable to your institution by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Initially payable to your institution "
+                },
+                {
+                    "id": "2",
+                    "description": "Not initially payable to your institution "
+                },
+                {
+                    "id": "3",
+                    "description": "Not applicable"
+                }
+            ]
+        },
+        "mloID": {
+            "label": "Mortgage Loan Originator NMLSR Identifier",
+            "description": "Enter the Nationwide Mortgage Licensing System and Registry mortgage loan originator unique identifier (NMLSR ID)."
+        },
+        "aus": {
+            "label": "Automated Underwriting System",
+            "description": "Indicate the automated underwriting system (AUS) used by your institution to evaluate the application by selecting up to five (5) of the applicable Code(s) from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Desktop Underwriter (DU)"
+                },
+                {
+                    "id": "2",
+                    "description": "Loan Prospector (LP)"
+                },
+                {
+                    "id": "3",
+                    "description": "Technology Open to Approved Lenders (TOTAL) Scorecard"
+                },
+                {
+                    "id": "4",
+                    "description": "Guaranteed Underwriting System (GUS)"
+                },
+                {
+                    "id": "5",
+                    "description": "Other",
+                    "conditional": {
+                        "id": "Conditional Free Form Text Field for Code 5: Other",
+                        "description": "This field will only contain a value if Code 5 is selected. Otherwise, leave it blank.",
+                        "limit": "50"
+                    }
+                },
+                {
+                    "id": "6",
+                    "description": "Not applicable"
+                }
+            ]
+        },
+        "ausResult": {
+            "label": "Automated Underwriting System Result",
+            "description": "Indicate the result generated by the automated underwriting system (AUS) previously listed by selecting the applicable Code(s) from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Approve/Eligible"
+                },
+                {
+                    "id": "2",
+                    "description": "Approve/Ineligible"
+                },
+                {
+                    "id": "3",
+                    "description": "Refer/Eligible"
+                },
+                {
+                    "id": "4",
+                    "description": "Refer/Ineligible"
+                },
+                {
+                    "id": "5",
+                    "description": "Refer with Caution"
+                },
+                {
+                    "id": "6",
+                    "description": "Out of Scope"
+                },
+                {
+                    "id": "7",
+                    "description": "Error"
+                },
+                {
+                    "id": "8",
+                    "description": "Accept"
+                },
+                {
+                    "id": "9",
+                    "description": "Caution"
+                },
+                {
+                    "id": "10",
+                    "description": "Ineligible"
+                },
+                {
+                    "id": "11",
+                    "description": "Incomplete"
+                },
+                {
+                    "id": "12",
+                    "description": "Invalid"
+                },
+                {
+                    "id": "13",
+                    "description": "Refer"
+                },
+                {
+                    "id": "14",
+                    "description": "Eligible"
+                },
+                {
+                    "id": "15",
+                    "description": "Unable to Determine"
+                },
+                {
+                    "id": "16",
+                    "description": "Other",
+                    "conditional": {
+                        "id": "Conditional Free Form Text Field for Code 16: Other",
+                        "description": "This field will only contain a value if Code 16 is selected. Otherwise, leave it blank.",
+                        "limit": "50"
+                    }
+                },
+                {
+                    "id": "17",
+                    "description": "Not applicable"
+                }
+            ]
+        },
+        "reverseMortgage": {
+            "label": "Reverse Mortgage",
+            "description": "Indicate whether the covered loan is, or the application is for, a reverse mortgage by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Reverse mortgage"
+                },
+                {
+                    "id": "2",
+                    "description": "Not a reverse mortgage"
+                }
+            ]
+        },
+        "openEndLineOfCredit": {
+            "label": "Open-End Line of Credit",
+            "description": "Indicate whether the covered loan is, or the application is for, an open-end line of credit as defined in § 1003.2(o) by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Open-end line of credit"
+                },
+                {
+                    "id": "2",
+                    "description": "Not an open-end line of credit"
+                }
+            ]
+        },
+        "businessPurpose": {
+            "label": "Business or Commercial Purpose",
+            "description": "Indicate whether the covered loan, or the application for a covered loan, is primarily for a business or commercial purpose by selecting the applicable Code from the following:",
+            "codes": [
+                {
+                    "id": "1",
+                    "description": "Primarily for a business or commercial purpose"
+                },
+                {
+                    "id": "2",
+                    "description": "Not primarily for a business or commercial purpose"
+                }
+            ]
+        }
+    }
+}
